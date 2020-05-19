@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "459846619695",
+    "firebase_url": "https://beautymatchingapp.firebaseio.com",
+    "project_id": "beautymatchingapp",
+    "storage_bucket": "beautymatchingapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459846619695:android:dd7ac04ea2bac5403d6cda",
+        "android_client_info": {
+          "package_name": "com.hjm.beautymatchingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459846619695-o9setsiqi18ph1lcb054s8ki9jhihegl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hjm.beautymatchingapp",
+            "certificate_hash": "0a2408ff0fe0b6b38197029245018b651262bde2"
+          }
+        },
+        {
+          "client_id": "459846619695-d0d39qs141iahj1cb4sqihcgri79g8nq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2VEpzZjhndFA49jSZ6IQety8o8c3QwB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459846619695-d0d39qs141iahj1cb4sqihcgri79g8nq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

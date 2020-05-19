@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('[로고]뷰티 매칭 앱',
+                    Text('[로고] 뷰티 매칭 앱',
                       style: TextStyle(
                         fontSize:30,
                         color: kAppMainColor,
@@ -71,7 +71,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
 
 Widget _buildLoginButton({String loginProvider,Function onTap}){
-
   Color btnColor;
   String btnText;
   Color textColor=Colors.white;
@@ -83,10 +82,9 @@ Widget _buildLoginButton({String loginProvider,Function onTap}){
     btnText='카카오 계정으로 로그인';
     textColor=Color(0xff3c1e1e);
   }else{
-    btnColor=Color(0xff20c602);
+    btnColor=Color(0xff1ed800);
     btnText='네이버 계정으로 로그인';
   }
-
 
   return Material(
     borderRadius: BorderRadius.circular(20),
