@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     //todo 각 로그인 기본값 세팅
-
+    KakaoContext.clientId=Kakao.appNativeKey;
 
 
     //todo [step1] 로그인 체크
@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    KakaoContext.clientId=Kakao.appNativeKey;
+
     return Material(
       child: Container(
         width: double.infinity,
