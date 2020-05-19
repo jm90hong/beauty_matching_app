@@ -1,6 +1,9 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:beautymatchingapp/constant/kakao.dart';
+import 'package:beautymatchingapp/models/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:kakao_flutter_sdk/all.dart';
+import 'package:provider/provider.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -13,10 +16,15 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
+
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    //todo 각 로그인 기본값 세팅
+
+
 
     //todo [step1] 로그인 체크
 
@@ -25,9 +33,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
 
 
-
   @override
   Widget build(BuildContext context) {
+    KakaoContext.clientId=Kakao.appNativeKey;
     return Material(
       child: Container(
         width: double.infinity,
@@ -51,22 +59,44 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
             //로그인 버튼 => 구글 / 카카오톡 / 네이버
-             Column(
-               children: <Widget>[
-                 _buildLoginButton(loginProvider: 'google',onTap: (){print('1');}),
-                 SizedBox(height: 20,),
-                 _buildLoginButton(loginProvider: 'kakao',onTap: (){print('1');}),
-                 SizedBox(height: 20,),
-                 _buildLoginButton(loginProvider: 'naver',onTap: (){print('1');}),
-                 SizedBox(height: 35,),
-               ],
+             Visibility(
+               visible: true,
+               child: Column(
+                 children: <Widget>[
+                   _buildLoginButton(loginProvider: 'google',onTap: () async{
+                     //todo start google login
+                     String result = await Provider.of<UserModel>(context,listen: false).startGoogleLogin();
+                     if(result=='ok'){
+
+                     }else{
+
+                     }
+                   }),
+                   SizedBox(height: 20,),
+                   _buildLoginButton(loginProvider: 'kakao',onTap: () async{
+                     //todo start kakao login
+                     String result = await Provider.of<UserModel>(context,listen: false).startKakaoLogin();
+                     if(result=='ok'){
+
+                     }else{
+
+                     }
+
+                   }),
+                   SizedBox(height: 20,),
+                   _buildLoginButton(loginProvider: 'naver',onTap: (){
+                     //todo start naver login
+
+                   }),
+                   SizedBox(height: 35,),
+                 ],
+               ),
              )
           ],
         ),
       ),
     );
   }
-
 }
 
 
