@@ -31,23 +31,25 @@ class _SplashScreenState extends State<SplashScreen> {
         _loginBtnVisible=true;
       });
     }else{
-      //todo 앱 로그인 됨.
+      //todo 이미 앱 로그인 됨.
       Session.loginProvider=loginProvider;
       Session.nickname=prefs.getString('nickname');
-      Session.loginId=prefs.getString('loginid');
+      Session.loginId=prefs.getString('loginId');
 
 
       Future.delayed(Duration(seconds: 2), (){
-        Navigator.pushNamed(context, MainScreen.id);
+        Navigator.pushReplacementNamed(context, MainScreen.id);
       });
     }
   }
 
-  setLoginInfoAndGoMain({String loginProvider,String loginId,String nickname}){
-    prefs.setString('loginProvider', loginProvider);
-    prefs.setString('loginId', loginId);
-    prefs.setString('nickname', nickname);
-
+  setLoginInfoAndGoMain(){
+    prefs.setString('loginProvider', Session.loginProvider);
+    prefs.setString('loginId', Session.loginId);
+    prefs.setString('nickname', Session.nickname);
+    Future.delayed(Duration(seconds: 1,milliseconds:500), (){
+      Navigator.pushReplacementNamed(context, MainScreen.id);
+    });
   }
 
 
@@ -104,7 +106,7 @@ class _SplashScreenState extends State<SplashScreen> {
                      //todo start google login
                      String result = await Provider.of<UserModel>(context,listen: false).startGoogleLogin();
                      if(result=='ok'){
-
+                       setLoginInfoAndGoMain();
                      }else{
 
                      }
@@ -114,7 +116,7 @@ class _SplashScreenState extends State<SplashScreen> {
                      //todo start kakao login
                      String result = await Provider.of<UserModel>(context,listen: false).startKakaoLogin();
                      if(result=='ok'){
-
+                       setLoginInfoAndGoMain();
                      }else{
 
                      }
@@ -124,7 +126,7 @@ class _SplashScreenState extends State<SplashScreen> {
                      //todo start naver login
                      String result =  await Provider.of<UserModel>(context,listen: false).startNaverLogin();
                      if(result=='ok'){
-
+                       setLoginInfoAndGoMain();
                      }else{
 
                      }

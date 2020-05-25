@@ -1,5 +1,6 @@
 
 
+import 'package:beautymatchingapp/vo/session.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_login/flutter_naver_login.dart';
@@ -9,7 +10,6 @@ import 'package:kakao_flutter_sdk/all.dart';
 
 class UserModel with ChangeNotifier {
   FirebaseAuth _auth;
-  var appUser=null;
 
 
 
@@ -25,6 +25,9 @@ class UserModel with ChangeNotifier {
     AuthCredential credential = GoogleAuthProvider.getCredential( idToken: authentication.idToken, accessToken: authentication.accessToken);
     AuthResult authResult = await _auth.signInWithCredential(credential);
     FirebaseUser user = authResult.user;
+    Session.loginProvider='google';
+    Session.loginId=user.email;
+    Session.nickname=user.displayName;
     print(user.email+' '+user.displayName);
     if(user !=null){
       return 'ok';
@@ -44,7 +47,9 @@ class UserModel with ChangeNotifier {
       //Session 에 저장
       //user.id / user.kakaoAccount.profile.nickname
       print(user.id.toString()+' '+user.kakaoAccount.profile.nickname);
-
+      Session.loginProvider='kakao';
+      Session.loginId=user.id.toString();
+      Session.nickname=user.kakaoAccount.profile.nickname;
       return 'ok';
     }on KakaoAuthException catch (e){
       // some error happened during the course of user login... deal with it.
@@ -66,6 +71,10 @@ class UserModel with ChangeNotifier {
       NaverLoginResult res = await FlutterNaverLogin.logIn();
       String email = res.account.email;
       String nickname = res.account.nickname;
+      Session.loginProvider='naver';
+      Session.loginId=email;
+      Session.nickname=nickname;
+
       print('naver : $email   $nickname');
       return 'ok';
     }catch(e){

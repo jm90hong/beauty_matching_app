@@ -1,3 +1,4 @@
+import 'package:beautymatchingapp/vo/session.dart';
 import 'package:flutter/material.dart';
 
 
@@ -18,7 +19,7 @@ class _MainScreenState extends State<MainScreen> {
         child: Container(
           height:double.infinity,
           width: double.infinity,
-          child: Text('main page'),
+          child: Text('main page ${Session.loginProvider} ${Session.loginId} ${Session.nickname}'),
         ),
       ),
     );
