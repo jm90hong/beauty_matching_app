@@ -16,7 +16,6 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-
 class _SplashScreenState extends State<SplashScreen> {
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   bool _loginBtnVisible=false;
@@ -35,7 +34,6 @@ class _SplashScreenState extends State<SplashScreen> {
       Session.loginProvider=loginProvider;
       Session.nickname=prefs.getString('nickname');
       Session.loginId=prefs.getString('loginId');
-
 
       Future.delayed(Duration(seconds: 2), (){
         Navigator.pushReplacementNamed(context, MainScreen.id);
