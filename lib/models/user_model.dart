@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_naver_login/flutter_naver_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk/all.dart';
 
@@ -54,6 +55,20 @@ class UserModel with ChangeNotifier {
       return 'fail';
     }catch (e){
       print('e3 : $e');
+      return 'fail';
+    }
+  }
+
+
+  //todo naver login
+  Future<String> startNaverLogin() async{
+    try{
+      NaverLoginResult res = await FlutterNaverLogin.logIn();
+      String email = res.account.email;
+      String nickname = res.account.nickname;
+      print('naver : $email   $nickname');
+      return 'ok';
+    }catch(e){
       return 'fail';
     }
   }

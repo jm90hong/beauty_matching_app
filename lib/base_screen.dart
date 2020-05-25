@@ -1,4 +1,5 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
+import 'package:beautymatchingapp/screens/main_screen.dart';
 import 'package:beautymatchingapp/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class BaseScreen extends StatelessWidget {
       initialRoute: SplashScreen.id,
       routes: {
         SplashScreen.id: (context) => SplashScreen(),
+        MainScreen.id: (context) => MainScreen(),
       },
     );
   }

@@ -1,9 +1,12 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/constant/kakao.dart';
 import 'package:beautymatchingapp/models/user_model.dart';
+import 'package:beautymatchingapp/screens/main_screen.dart';
+import 'package:beautymatchingapp/vo/session.dart';
 import 'package:flutter/material.dart';
 import 'package:kakao_flutter_sdk/all.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -15,6 +18,39 @@ class SplashScreen extends StatefulWidget {
 
 
 class _SplashScreenState extends State<SplashScreen> {
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  bool _loginBtnVisible=false;
+  SharedPreferences prefs;
+
+  Future<void> checkAppLoginInfo() async{
+    prefs = await _prefs;
+    var loginProvider = prefs.getString('loginProvider');
+    if(loginProvider==null){
+      //todo 앱 로그인 안됨.
+      setState(() {
+        _loginBtnVisible=true;
+      });
+    }else{
+      //todo 앱 로그인 됨.
+      Session.loginProvider=loginProvider;
+      Session.nickname=prefs.getString('nickname');
+      Session.loginId=prefs.getString('loginid');
+
+
+      Future.delayed(Duration(seconds: 2), (){
+        Navigator.pushNamed(context, MainScreen.id);
+      });
+    }
+  }
+
+  setLoginInfoAndGoMain({String loginProvider,String loginId,String nickname}){
+    prefs.setString('loginProvider', loginProvider);
+    prefs.setString('loginId', loginId);
+    prefs.setString('nickname', nickname);
+
+  }
+
+
 
 
 
@@ -27,6 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
 
     //todo [step1] 로그인 체크
+    checkAppLoginInfo();
 
 
   }
@@ -60,7 +97,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             //로그인 버튼 => 구글 / 카카오톡 / 네이버
              Visibility(
-               visible: true,
+               visible: _loginBtnVisible,
                child: Column(
                  children: <Widget>[
                    _buildLoginButton(loginProvider: 'google',onTap: () async{
@@ -81,12 +118,16 @@ class _SplashScreenState extends State<SplashScreen> {
                      }else{
 
                      }
-
                    }),
                    SizedBox(height: 20,),
-                   _buildLoginButton(loginProvider: 'naver',onTap: (){
+                   _buildLoginButton(loginProvider: 'naver',onTap: () async{
                      //todo start naver login
+                     String result =  await Provider.of<UserModel>(context,listen: false).startNaverLogin();
+                     if(result=='ok'){
 
+                     }else{
+
+                     }
                    }),
                    SizedBox(height: 35,),
                  ],
