@@ -36,7 +36,7 @@ dependencies:
   flutter_naver_login: ^1.2.0
 
   shared_preferences: ^0.5.7+3
-
+  fluttertoast: ^4.0.1
 
 
 dev_dependencies:

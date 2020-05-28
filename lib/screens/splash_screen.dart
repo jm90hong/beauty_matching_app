@@ -1,3 +1,4 @@
+import 'package:beautymatchingapp/constant/app_messages.dart';
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/constant/kakao.dart';
 import 'package:beautymatchingapp/models/user_model.dart';
@@ -23,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> checkAppLoginInfo() async{
     prefs = await _prefs;
-    var loginProvider = prefs.getString('loginProvider');
+    String loginProvider = prefs.getString('loginProvider');
     if(loginProvider==null){
       //todo 앱 로그인 안됨.
       setState(() {
@@ -35,6 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Session.nickname=prefs.getString('nickname');
       Session.loginId=prefs.getString('loginId');
 
+
       Future.delayed(Duration(seconds: 2), (){
         Navigator.pushReplacementNamed(context, MainScreen.id);
       });
@@ -45,34 +47,28 @@ class _SplashScreenState extends State<SplashScreen> {
     prefs.setString('loginProvider', Session.loginProvider);
     prefs.setString('loginId', Session.loginId);
     prefs.setString('nickname', Session.nickname);
+
+    //todo 로딩바 구현.
     Future.delayed(Duration(seconds: 1,milliseconds:500), (){
       Navigator.pushReplacementNamed(context, MainScreen.id);
     });
   }
 
-
-
-
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    //todo 각 로그인 기본값 세팅
-    KakaoContext.clientId=Kakao.appNativeKey;
 
-
-    //todo [step1] 로그인 체크
+    //todo [step 1]각 로그인 기본값 세팅
+    KakaoContext.clientId = Kakao.appNativeKey;
+    
+    //todo [step 2] 로그인 체크
     checkAppLoginInfo();
-
-
   }
-
 
 
   @override
   Widget build(BuildContext context) {
-
     return Material(
       child: Container(
         width: double.infinity,
@@ -106,7 +102,7 @@ class _SplashScreenState extends State<SplashScreen> {
                      if(result=='ok'){
                        setLoginInfoAndGoMain();
                      }else{
-
+                       showToast(message: AppMessage.networkError);
                      }
                    }),
                    SizedBox(height: 20,),
@@ -116,7 +112,7 @@ class _SplashScreenState extends State<SplashScreen> {
                      if(result=='ok'){
                        setLoginInfoAndGoMain();
                      }else{
-
+                       showToast(message: AppMessage.networkError);
                      }
                    }),
                    SizedBox(height: 20,),
@@ -126,7 +122,7 @@ class _SplashScreenState extends State<SplashScreen> {
                      if(result=='ok'){
                        setLoginInfoAndGoMain();
                      }else{
-
+                       showToast(message: AppMessage.networkError);
                      }
                    }),
                    SizedBox(height: 35,),
