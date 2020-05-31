@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
     }
   }
 
-  setLoginInfoAndGoMain(){
+  void _setLoginInfoAndGoMain(){
     prefs.setString('loginProvider', Session.loginProvider);
     prefs.setString('loginId', Session.loginId);
     prefs.setString('nickname', Session.nickname);
@@ -100,7 +100,7 @@ class _SplashScreenState extends State<SplashScreen> {
                      //todo start google login
                      String result = await Provider.of<UserModel>(context,listen: false).startGoogleLogin();
                      if(result=='ok'){
-                       setLoginInfoAndGoMain();
+                       _setLoginInfoAndGoMain();
                      }else{
                        showToast(message: AppMessage.networkError);
                      }
@@ -110,7 +110,7 @@ class _SplashScreenState extends State<SplashScreen> {
                      //todo start kakao login
                      String result = await Provider.of<UserModel>(context,listen: false).startKakaoLogin();
                      if(result=='ok'){
-                       setLoginInfoAndGoMain();
+                       _setLoginInfoAndGoMain();
                      }else{
                        showToast(message: AppMessage.networkError);
                      }
@@ -120,7 +120,7 @@ class _SplashScreenState extends State<SplashScreen> {
                      //todo start naver login
                      String result =  await Provider.of<UserModel>(context,listen: false).startNaverLogin();
                      if(result=='ok'){
-                       setLoginInfoAndGoMain();
+                       _setLoginInfoAndGoMain();
                      }else{
                        showToast(message: AppMessage.networkError);
                      }
