@@ -28,7 +28,7 @@ class _MainPage1State extends State<MainPage1> {
     // TODO: implement initState
     super.initState();
     Position location = await getCurrentUserLocation();
-    location.
+
   }
 
 
