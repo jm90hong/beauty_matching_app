@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const _colorCode=0xfffc5e1a;
+const _colorCode=0xffff0051;
 const Color kAppMainColor= MaterialColor(_colorCode,const<int,Color>{
   50: Color(_colorCode),
   100: Color(_colorCode),

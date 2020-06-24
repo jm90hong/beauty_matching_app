@@ -41,6 +41,9 @@ dependencies:
   geolocator: ^5.3.1
   font_awesome_flutter: ^8.8.1
 
+  carousel_slider: ^2.1.0
+
+
 
 dev_dependencies:
   flutter_test:
@@ -60,6 +63,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/images/logo/
+    - assets/images/icon/
     - assets/images/sns-login/
   #   - images/a_dot_ham.jpeg
 

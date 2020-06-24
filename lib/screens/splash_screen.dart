@@ -81,13 +81,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('[로고] 뷰티 매칭 앱',
-                      style: TextStyle(
-                        fontSize:30,
-                        color: kAppMainColor,
-                        fontWeight: FontWeight.bold
-                      ),
-                    ),
+                    Image.asset('assets/images/logo/logo.png',width:100,)
                   ],
                 ),
               ),
@@ -154,21 +148,21 @@ Widget _buildLoginButton({String loginProvider,Function onTap}){
   }
 
   return Material(
-    borderRadius: BorderRadius.circular(20),
+    borderRadius: BorderRadius.circular(10),
     color: btnColor,
     child: InkWell(
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(10),
       onTap:onTap,
       child: Container(
         width: 280,
-        padding: EdgeInsets.symmetric(vertical:14,horizontal: 30),
+        padding: EdgeInsets.symmetric(vertical:10,horizontal:23),
         child: Center(
             child: Row(
               children: <Widget>[
                 Image.asset('assets/images/sns-login/$loginProvider-letter.png',width: 26,),
                 SizedBox(width:20,),
                 Text(btnText,
-                  style: TextStyle(color:textColor,fontSize:16,fontWeight: FontWeight.bold),),
+                  style: TextStyle(color:textColor,fontSize:14,fontWeight: FontWeight.bold),),
               ],
             )
         ),
