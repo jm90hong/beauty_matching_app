@@ -12,10 +12,6 @@ class UserModel with ChangeNotifier {
   FirebaseAuth _auth;
 
 
-
-
-
-
   //todo googlelogin...
   Future<String> startGoogleLogin() async{
     _auth = FirebaseAuth.instance;
