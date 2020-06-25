@@ -40,8 +40,7 @@ class _MainPage1State extends State<MainPage1> {
   List<Widget> silList = [];
   List<Widget> saList = [];
 
-
-
+  
   CarouselOptions _carouselOptions = CarouselOptions(
     viewportFraction: 0.65,
     initialPage: 0,
@@ -168,7 +167,7 @@ class _MainPage1State extends State<MainPage1> {
   Widget _makeCarousel(List list,
       {@required double heightRatio,@required int duration,@required double widthFraction}
   ){
-    print(list.length);
+
     return CarouselSlider(
       options: CarouselOptions(
         height:MediaQuery.of(context).size.width*heightRatio,
