@@ -11,6 +11,7 @@ import 'package:geolocator/geolocator.dart';
 
 
 
+//TODO 홈
 class MainPage1 extends StatefulWidget {
   @override
   _MainPage1State createState() => _MainPage1State();
