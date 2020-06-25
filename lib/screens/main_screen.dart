@@ -45,7 +45,6 @@ class _MainScreenState extends State<MainScreen> {
         selectedFontSize:11,
         unselectedFontSize:11,
         items: [
-
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.circle,size:bottomNavIconSize,),
             title: Padding(

@@ -1,5 +1,7 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/other/my_scroll_behavior.dart';
+import 'package:beautymatchingapp/ui/card/sa_card.dart';
+import 'package:beautymatchingapp/ui/card/sil_card.dart';
 import 'package:beautymatchingapp/vo/session.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';

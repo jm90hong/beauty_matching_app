@@ -8,7 +8,11 @@ class SaCard extends StatefulWidget {
 
 class _SaCardState extends State<SaCard> {
   @override
-  Widget build(BuildContext context) {
-    return Container();
+  Widget build(BuildContext context){
+    return Container(
+      width: MediaQuery.of(context).size.width*0.8,
+      height:100,
+      color: Colors.red,
+    );
   }
 }
