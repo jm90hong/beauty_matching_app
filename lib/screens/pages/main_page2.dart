@@ -12,8 +12,6 @@ class MainPage2 extends StatefulWidget {
 
 class _MainPage2State extends State<MainPage2> {
 
-
-
   @override
   void initState() {
     // TODO: implement initState
@@ -21,14 +19,12 @@ class _MainPage2State extends State<MainPage2> {
     var geolocator = Geolocator();
     var locationOptions = LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10);
     geolocator.getPositionStream(locationOptions).listen((Position position) {
-      //position 받아옴
+      //todo 현재 location 받아옴
       print(position == null ? 'Unknown' : position.latitude.toString() + ', ' + position.longitude.toString());
       Provider.of<LocationModel>(context,listen: false).getAddress(
           latitude:position.latitude.toString(),
           longitude: position.longitude.toString()
       );
-
-
     });
   }
 

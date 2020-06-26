@@ -20,7 +20,6 @@ class MainPage1 extends StatefulWidget {
 
 class _MainPage1State extends State<MainPage1> {
 
-
   TextStyle helloTS = TextStyle(
       fontWeight: FontWeight.bold,
       fontSize:16,
@@ -39,7 +38,6 @@ class _MainPage1State extends State<MainPage1> {
   ];
   List<Widget> silList = [];
   List<Widget> saList = [];
-
   
   CarouselOptions _carouselOptions = CarouselOptions(
     viewportFraction: 0.65,
@@ -62,7 +60,6 @@ class _MainPage1State extends State<MainPage1> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
   }
 
 
@@ -98,7 +95,7 @@ class _MainPage1State extends State<MainPage1> {
                       ),
                     ),
                     Padding(
-                        padding:EdgeInsets.only(right:12) ,
+                        padding:EdgeInsets.only(right:12),
                         child: Column(
                           children: <Widget>[
                             Image.asset('assets/images/icon/default-user-icon.png',width:40,),
