@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 
 class LocationModel with ChangeNotifier{
+
   var client = http.Client();
 
   String address;
@@ -25,4 +26,14 @@ class LocationModel with ChangeNotifier{
       print(e);
     }
   }
+
 }
+
+
+
+
+
+
+
+
+

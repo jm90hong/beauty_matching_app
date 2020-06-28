@@ -27,7 +27,7 @@ class _MainPage1State extends State<MainPage1> {
   );
   TextStyle titleTS = TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize:14,
+      fontSize:15,
       color: Colors.black
   );
 
@@ -70,7 +70,7 @@ class _MainPage1State extends State<MainPage1> {
         behavior: MyScrollBehavior(),
         child: SingleChildScrollView(
           child: Container(
-            padding:EdgeInsets.only(top:8,left:10,right:10,bottom:2),
+            padding:EdgeInsets.only(top:8,left:10,right:10,bottom:20),
             color: Colors.white,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,35 +139,74 @@ class _MainPage1State extends State<MainPage1> {
                     ),
                   ),
                 ),
-                SizedBox(height: 25,),
+                SizedBox(height: 30,),
                 Text('오늘의 알림',style: titleTS,),
                 SizedBox(height: 10,),
                 //todo 이벤트 리스트
                 _makeCarousel(eventList,heightRatio:0.46,widthFraction: 0.7,duration:4),
-                SizedBox(height: 25,),
+                SizedBox(height: 35,),
                 Text('관리사님이 필요해요',style: titleTS,),
+                SizedBox(height:10,),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: <Widget>[
-                      Text('12312312321'),
-                      Text('12312312321'),
-                      Text('12312312321'),
-                      Text('12312312321'),
-                      Text('12312312321'),
-                      Text('12312312321'),
-                      Text('12312312321'),
-                      Text('12312312321'),
+                      //todo 관리실(sil) 리스트
+                      SilCard(
+                        shopImageUrl: 'https://t1.daumcdn.net/cfile/blog/99C5D6485A8A1BC31D',
+                        shopname: '부산 좋은 피부관리실',
+                        location: '부산',
+                        distance: '310km',
+                        numberOfSa: 2,
+                      ),
+                      SilCard(
+                        shopImageUrl: 'https://post-phinf.pstatic.net/MjAxNzA5MTJfMjM3/MDAxNTA1MTgxOTcxOTIx.8EN-sj_AB0XCZeCRiKVINy6U9XsPCTk0J69Cx69nA-Mg.Gt2ISmMDBzIwWqfHhiiZP5qN9JbO0YmtNQ_0Fh8Rz3Yg.JPEG/%ED%94%BC%EB%B6%80%EA%B4%80%EB%A6%AC_%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4.jpg?type=w1200',
+                        shopname: '테라피 마사지',
+                        location: '경남 양산',
+                        distance: '110km',
+                        numberOfSa: 1,
+                      ),
+                      SilCard(
+                        shopImageUrl: 'https://www.seoulwire.com/news/photo/201905/126989_243387_1333.jpg',
+                        shopname: '뷰티 스킨 케어',
+                        location: '서울',
+                        distance: '3km',
+                        numberOfSa: 1,
+                      ),
                     ],
                   ),
                 ),
-                SizedBox(height: 10,),
-                //todo 모집중인 관리실 리스트
-                //_makeCarousel([1,2,3,4,5]),
-                SizedBox(height: 25,),
+
+
+                SizedBox(height:35,),
                 Text('일을 할 수 있어요',style: titleTS,),
                 SizedBox(height: 10,),
-                //_makeCarousel([1,2,3,4,5]),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: <Widget>[
+                      //todo 관리사(sa) 리스트
+                      SaCard(
+                        profileImageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',
+                        nickname: '홍정민 짱131',
+                        location: '부산',
+                        distance: '310km',
+                      ),
+                      SaCard(
+                        profileImageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTgGdgp3hHqr4S29StJmb7C-9p_HgTgHXwXXA&usqp=CAU',
+                        nickname: '진진진11',
+                        location: '경남 양산',
+                        distance: '110km',
+                      ),
+                      SaCard(
+                        profileImageUrl: 'https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
+                        nickname: 'acessd11',
+                        location: '서울',
+                        distance: '3km',
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
