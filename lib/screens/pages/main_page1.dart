@@ -146,6 +146,21 @@ class _MainPage1State extends State<MainPage1> {
                 _makeCarousel(eventList,heightRatio:0.46,widthFraction: 0.7,duration:4),
                 SizedBox(height: 25,),
                 Text('관리사님이 필요해요',style: titleTS,),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: <Widget>[
+                      Text('12312312321'),
+                      Text('12312312321'),
+                      Text('12312312321'),
+                      Text('12312312321'),
+                      Text('12312312321'),
+                      Text('12312312321'),
+                      Text('12312312321'),
+                      Text('12312312321'),
+                    ],
+                  ),
+                ),
                 SizedBox(height: 10,),
                 //todo 모집중인 관리실 리스트
                 //_makeCarousel([1,2,3,4,5]),

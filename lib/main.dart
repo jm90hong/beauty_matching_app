@@ -6,7 +6,6 @@ import 'models/location_model.dart';
 import 'models/user_model.dart';
 
 
-
 void main() {
   runApp(MyApp());
 }
