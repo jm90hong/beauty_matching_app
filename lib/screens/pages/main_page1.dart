@@ -218,7 +218,6 @@ class _MainPage1State extends State<MainPage1> {
   Widget _makeCarousel(List list,
       {@required double heightRatio,@required int duration,@required double widthFraction}
   ){
-
     return CarouselSlider(
       options: CarouselOptions(
         height:MediaQuery.of(context).size.width*heightRatio,
