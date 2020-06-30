@@ -26,8 +26,7 @@
 
             <meta-data
               android:name="io.flutter.embedding.android.NormalTheme"
-              android:resource="@style/NormalTheme"
-              />
+              android:resource="@style/NormalTheme" />
             <meta-data
                 android:name="com.naver.sdk.clientId"
                 android:value="@string/client_id" />

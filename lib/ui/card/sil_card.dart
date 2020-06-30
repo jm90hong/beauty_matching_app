@@ -37,6 +37,7 @@ class _SilCardState extends State<SilCard> {
       fontSize: 12
   );
 
+
   @override
   Widget build(BuildContext context) {
     return Container(

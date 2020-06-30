@@ -64,6 +64,7 @@ class UserModel with ChangeNotifier {
   //todo naver login
   Future<String> startNaverLogin() async{
     try{
+      print('start naver login!!');
       NaverLoginResult res = await FlutterNaverLogin.logIn();
       String email = res.account.email;
       String nickname = res.account.nickname;
@@ -74,6 +75,7 @@ class UserModel with ChangeNotifier {
       print('naver : $email   $nickname');
       return 'ok';
     }catch(e){
+      print('naver e : '+e);
       return 'fail';
     }
   }
