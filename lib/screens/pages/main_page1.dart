@@ -1,6 +1,7 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/other/my_scroll_behavior.dart';
 import 'package:beautymatchingapp/ui/card/sa_card.dart';
+import 'package:beautymatchingapp/ui/card/sa_long_card.dart';
 import 'package:beautymatchingapp/ui/card/sil_card.dart';
 import 'package:beautymatchingapp/vo/session.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:responsive_grid/responsive_grid.dart';
 
 
 
@@ -144,6 +146,33 @@ class _MainPage1State extends State<MainPage1> {
                 SizedBox(height: 10,),
                 //todo 이벤트 리스트
                 _makeCarousel(eventList,heightRatio:0.46,widthFraction: 0.7,duration:4),
+                SizedBox(height: 35,),
+                Text('BEST 관리사',style: titleTS,),
+                SizedBox(height:10,),
+                ResponsiveGridRow(
+                  children: <ResponsiveGridCol>[
+                    ResponsiveGridCol(
+                      xs:6,
+                      md:4,
+                      child: SaLongCard(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU'),
+                    ),
+                    ResponsiveGridCol(
+                      xs:6,
+                      md:4,
+                      child: SaLongCard(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU'),
+                    ),
+                    ResponsiveGridCol(
+                      xs:6,
+                      md:4,
+                      child: SaLongCard(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU'),
+                    ),
+                    ResponsiveGridCol(
+                      xs:6,
+                      md:4,
+                      child: SaLongCard(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU'),
+                    ),
+                  ],
+                ),
                 SizedBox(height: 35,),
                 Text('관리사님이 필요해요',style: titleTS,),
                 SizedBox(height:10,),

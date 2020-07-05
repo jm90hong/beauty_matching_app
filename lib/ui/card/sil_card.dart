@@ -1,4 +1,5 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
+import 'package:beautymatchingapp/constant/k_widget.dart';
 import 'package:flutter/material.dart';
 
 
@@ -18,11 +19,6 @@ class _SilCardState extends State<SilCard> {
       color: Colors.black,
       fontWeight: FontWeight.bold,
       fontSize: 13
-  );
-  TextStyle _numberTextStyle = TextStyle(
-      color: Colors.black87,
-      fontWeight: FontWeight.normal,
-      fontSize:12
   );
 
   TextStyle _locationTextStyle = TextStyle(
@@ -60,7 +56,8 @@ class _SilCardState extends State<SilCard> {
           SizedBox(height:5,),
           Text(widget.shopname, style:_titleTextStyle,overflow: TextOverflow.clip,),
           SizedBox(height:2,),
-          Text('${widget.numberOfSa} 명 모집',style:_numberTextStyle,),
+          //Text('${widget.numberOfSa} 명 모집',style:_numberTextStyle,),
+          NumberOfSaTag(number:widget.numberOfSa),
           SizedBox(height:4,),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -75,3 +72,4 @@ class _SilCardState extends State<SilCard> {
     );
   }
 }
+
