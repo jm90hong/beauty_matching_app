@@ -46,11 +46,16 @@ class _SaCardState extends State<SaCard> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Image.network(
-                   widget.profileImageUrl,
-                   fit: BoxFit.cover,
-                   width:130,
-                   height:130,
+              Container(
+                width:130,
+                height:130,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(widget.profileImageUrl)
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(15.0))
+                ),
               ),
             ],
           ),

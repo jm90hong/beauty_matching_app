@@ -45,11 +45,16 @@ class _SilCardState extends State<SilCard> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Image.network(
-                widget.shopImageUrl,
-                fit: BoxFit.cover,
+              Container(
                 width:130,
                 height:130,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(widget.shopImageUrl)
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(15.0))
+                ),
               ),
             ],
           ),

@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-class SaLongCard extends StatefulWidget {
+class SaCardType2 extends StatefulWidget {
 
   final profileImageUrl;
   final nickname;
@@ -13,18 +13,18 @@ class SaLongCard extends StatefulWidget {
   final introMsg;
 
   //Constructor
-  SaLongCard({this.distance,this.location,this.nickname,
+  SaCardType2({this.distance,this.location,this.nickname,
     this.profileImageUrl,this.introMsg,this.rate});
 
   @override
   _SaLongCardState createState() => _SaLongCardState();
 }
 
-class _SaLongCardState extends State<SaLongCard> {
+class _SaLongCardState extends State<SaCardType2> {
   TextStyle _titleTextStyle = TextStyle(
       color: Colors.black,
       fontWeight: FontWeight.bold,
-      fontSize: 15
+      fontSize: 14
   );
 
   TextStyle _locationTextStyle = TextStyle(
@@ -36,13 +36,13 @@ class _SaLongCardState extends State<SaLongCard> {
   TextStyle _startTextStyle = TextStyle(
     color:Colors.black54,
     fontWeight: FontWeight.bold,
-    fontSize: 14
+    fontSize: 12
   );
 
   TextStyle _greyTextStyle = TextStyle(
       color: Colors.grey,
       fontWeight: FontWeight.bold,
-      fontSize: 12
+      fontSize: 11
   );
 
 
@@ -55,8 +55,8 @@ class _SaLongCardState extends State<SaLongCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            width:150,
-            height:150,
+            width:140,
+            height:140,
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
