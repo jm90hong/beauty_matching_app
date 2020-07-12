@@ -156,21 +156,21 @@ class _MainPage1State extends State<MainPage1> {
                       //todo 관리실(sil) 리스트
                       SilCard(
                         shopImageUrl: 'https://t1.daumcdn.net/cfile/blog/99C5D6485A8A1BC31D',
-                        shopname: '부산 좋은 피부관리실',
+                        shopName: '부산 좋은 피부관리실',
                         location: '부산',
                         distance: '310km',
                         numberOfSa: 2,
                       ),
                       SilCard(
                         shopImageUrl: 'https://post-phinf.pstatic.net/MjAxNzA5MTJfMjM3/MDAxNTA1MTgxOTcxOTIx.8EN-sj_AB0XCZeCRiKVINy6U9XsPCTk0J69Cx69nA-Mg.Gt2ISmMDBzIwWqfHhiiZP5qN9JbO0YmtNQ_0Fh8Rz3Yg.JPEG/%ED%94%BC%EB%B6%80%EA%B4%80%EB%A6%AC_%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4.jpg?type=w1200',
-                        shopname: '테라피 마사지',
+                        shopName: '테라피 마사지',
                         location: '경남 양산',
                         distance: '110km',
                         numberOfSa: 1,
                       ),
                       SilCard(
                         shopImageUrl: 'https://www.seoulwire.com/news/photo/201905/126989_243387_1333.jpg',
-                        shopname: '뷰티 스킨 케어',
+                        shopName: '뷰티 스킨 케어',
                         location: '서울',
                         distance: '3km',
                         numberOfSa: 1,
@@ -178,8 +178,6 @@ class _MainPage1State extends State<MainPage1> {
                     ],
                   ),
                 ),
-
-
                 SizedBox(height:35,),
                 Text('일을 할 수 있어요',style: titleTS,),
                 SizedBox(height: 10,),

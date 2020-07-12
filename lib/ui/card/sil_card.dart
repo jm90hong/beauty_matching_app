@@ -5,34 +5,16 @@ import 'package:flutter/material.dart';
 
 class SilCard extends StatefulWidget {
   final shopImageUrl;
-  final shopname;
+  final shopName;
   final location;
   final distance;
   final numberOfSa;
-  SilCard({this.shopImageUrl,this.distance,this.location,this.shopname,this.numberOfSa});
+  SilCard({this.shopImageUrl,this.distance,this.location,this.shopName,this.numberOfSa});
   @override
   _SilCardState createState() => _SilCardState();
 }
 
 class _SilCardState extends State<SilCard> {
-  TextStyle _titleTextStyle = TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
-      fontSize: 13
-  );
-
-  TextStyle _locationTextStyle = TextStyle(
-      color: kAppMainColor,
-      fontWeight: FontWeight.normal,
-      fontSize: 12
-  );
-
-  TextStyle _distanceTextStyle = TextStyle(
-      color: Colors.grey,
-      fontWeight: FontWeight.normal,
-      fontSize: 12
-  );
-
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +41,7 @@ class _SilCardState extends State<SilCard> {
             ],
           ),
           SizedBox(height:5,),
-          Text(widget.shopname, style:_titleTextStyle,overflow: TextOverflow.clip,),
+          Text(widget.shopName, style:AppTextStyles.cardTextStyle.title,overflow: TextOverflow.clip,),
           SizedBox(height:2,),
           //Text('${widget.numberOfSa} 명 모집',style:_numberTextStyle,),
           NumberOfSaTag(number:widget.numberOfSa),
@@ -67,9 +49,9 @@ class _SilCardState extends State<SilCard> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Text(widget.location, style:_locationTextStyle,),
+              Text(widget.location, style:AppTextStyles.cardTextStyle.location,),
               SizedBox(width:20,),
-              Text(widget.distance,style: _distanceTextStyle,)
+              Text(widget.distance,style: AppTextStyles.cardTextStyle.distance,)
             ],
           )
         ],

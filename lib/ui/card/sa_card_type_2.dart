@@ -1,4 +1,5 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
+import 'package:beautymatchingapp/constant/k_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,30 +22,6 @@ class SaCardType2 extends StatefulWidget {
 }
 
 class _SaLongCardState extends State<SaCardType2> {
-  TextStyle _titleTextStyle = TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
-      fontSize: 14
-  );
-
-  TextStyle _locationTextStyle = TextStyle(
-      color: kAppMainColor,
-      fontWeight: FontWeight.normal,
-      fontSize: 12
-  );
-
-  TextStyle _startTextStyle = TextStyle(
-    color:Colors.black54,
-    fontWeight: FontWeight.bold,
-    fontSize: 12
-  );
-
-  TextStyle _greyTextStyle = TextStyle(
-      color: Colors.grey,
-      fontWeight: FontWeight.bold,
-      fontSize: 11
-  );
-
 
   @override
   Widget build(BuildContext context) {
@@ -71,21 +48,21 @@ class _SaLongCardState extends State<SaCardType2> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('홍정민 짱',style: _titleTextStyle,),
+                Text('홍정민 짱',style:AppTextStyles.cardTextStyle.title,),
                 SizedBox(height:2),
                 Row(
                   children: <Widget>[
                     //rate
                     Icon(Icons.star,color: kAppMainColor,size:14,),
                     SizedBox(width:4),
-                    Text('4.3',style:_startTextStyle,),
+                    Text('4.3',style:AppTextStyles.cardTextStyle.star,),
                     SizedBox(width:13),
-                    Text('부산',style: _locationTextStyle,)
+                    Text('부산',style:AppTextStyles.cardTextStyle.location,)
                     //city
                   ],
                 ),
                 SizedBox(height:4),
-                Text('경락 마사지 2년',style: _greyTextStyle,)
+                Text('경락 마사지 2년',style: AppTextStyles.cardTextStyle.smallGrey,)
               ],
             ),
           )

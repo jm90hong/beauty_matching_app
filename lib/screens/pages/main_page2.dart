@@ -1,4 +1,5 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
+import 'package:beautymatchingapp/constant/k_widget.dart';
 import 'package:beautymatchingapp/models/location_model.dart';
 import 'package:beautymatchingapp/ui/card/sa_long_listtile.dart';
 import 'package:flutter/material.dart';
@@ -13,13 +14,6 @@ class MainPage2 extends StatefulWidget {
 }
 
 class _MainPage2State extends State<MainPage2> {
-
-
-  TextStyle _locationTextStyle = TextStyle(
-    color:Colors.black,
-    fontWeight: FontWeight.bold,
-    fontSize:16
-  );
 
   @override
   void initState() {
@@ -57,18 +51,34 @@ class _MainPage2State extends State<MainPage2> {
                         children: <Widget>[
                           Icon(Icons.location_on,size:19,color: kAppMainColor,),
                           SizedBox(width: 5,),
-                          Text('${locationModel.address}',style: _locationTextStyle,)
+                          Text('${locationModel.address}',style: AppTextStyles.appBarTitleTextStyle,)
                         ],
                       ),
                     );
                   },
                 ),
-
-              SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',)
-                  ],
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                      SaLongListTile(profileImageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5T9BuGm5-ESp0jCaTnI9z2lPH-trDy94bzQ&usqp=CAU',),
+                    ],
+                  ),
                 ),
               )
 
@@ -79,3 +89,4 @@ class _MainPage2State extends State<MainPage2> {
     );
   }
 }
+

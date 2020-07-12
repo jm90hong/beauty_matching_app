@@ -1,4 +1,5 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
+import 'package:beautymatchingapp/constant/k_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,24 +17,6 @@ class SaCard extends StatefulWidget {
 }
 
 class _SaCardState extends State<SaCard> {
-  TextStyle _titleTextStyle = TextStyle(
-    color: Colors.black,
-    fontWeight: FontWeight.bold,
-    fontSize: 14
-  );
-
-  TextStyle _locationTextStyle = TextStyle(
-    color: kAppMainColor,
-    fontWeight: FontWeight.normal,
-    fontSize: 12
-  );
-
-  TextStyle _distanceTextStyle = TextStyle(
-    color: Colors.grey,
-    fontWeight: FontWeight.normal,
-      fontSize: 12
-  );
-
 
   @override
   Widget build(BuildContext context){
@@ -60,14 +43,14 @@ class _SaCardState extends State<SaCard> {
             ],
           ),
           SizedBox(height:5,),
-          Text(widget.nickname, style:_titleTextStyle,overflow: TextOverflow.clip,),
+          Text(widget.nickname, style:AppTextStyles.cardTextStyle.title,overflow: TextOverflow.clip,),
           SizedBox(height:4,),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Text(widget.location, style:_locationTextStyle,),
+              Text(widget.location, style:AppTextStyles.cardTextStyle.location,),
               SizedBox(width:20,),
-              Text(widget.distance,style: _distanceTextStyle,)
+              Text(widget.distance,style: AppTextStyles.cardTextStyle.distance,)
             ],
           )
         ],

@@ -5,26 +5,24 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 
-class SaLongListTile extends StatefulWidget {
-  final profileImageUrl;
-  final nickname;
+class SilLongListTile extends StatefulWidget {
+  final shopImageUrl;
+  final shopName;
   final location;
   final distance;
-  final rate;
-  final introMsg;
+  final numberOfSa;
 
 
   //Constructor
-  SaLongListTile({this.distance,this.location,this.nickname,
-    this.profileImageUrl,this.introMsg,this.rate});
+  SilLongListTile({this.distance,this.location,this.shopName,
+    this.shopImageUrl,this.numberOfSa});
 
 
   @override
-  _SaLongListTileState createState() => _SaLongListTileState();
+  _SilLongListTileState createState() => _SilLongListTileState();
 }
 
-class _SaLongListTileState extends State<SaLongListTile> {
-
+class _SilLongListTileState extends State<SilLongListTile> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,7 +38,7 @@ class _SaLongListTileState extends State<SaLongListTile> {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(widget.profileImageUrl)
+                      image: NetworkImage(widget.shopImageUrl)
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(8.0))
               ),
@@ -55,10 +53,6 @@ class _SaLongListTileState extends State<SaLongListTile> {
                     SizedBox(height:3,),
                     Row(
                       children: <Widget>[
-                        Icon(Icons.star,color: kAppMainColor,size:14,),
-                        SizedBox(width:4),
-                        Text('4.3',style:AppTextStyles.cardTextStyle.star,),
-                        SizedBox(width:13),
                         Text('부산',style: AppTextStyles.cardTextStyle.location,),
                       ],
                     ),
