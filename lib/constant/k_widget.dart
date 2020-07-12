@@ -11,10 +11,10 @@ class NumberOfSaTag extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical:2,horizontal:7),
       decoration: BoxDecoration(
-        color: kAppMainColor,
+        color: number != 0 ? kAppMainColor : Colors.grey,
         borderRadius:BorderRadius.all(Radius.circular(5))
       ),
-      child: Text(number.toString()+' 명 모집중',
+      child: Text(number != 0 ? number.toString()+' 명 모집중' : '모집 완료',
         style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:10),),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/other/my_scroll_behavior.dart';
+import 'package:beautymatchingapp/screens/detail_of_sa_screen.dart';
 import 'package:beautymatchingapp/ui/card/sa_card.dart';
 import 'package:beautymatchingapp/ui/card/sa_card_type_2.dart';
 import 'package:beautymatchingapp/ui/card/sil_card.dart';
@@ -191,6 +192,12 @@ class _MainPage1State extends State<MainPage1> {
                         nickname: '홍정민 짱131',
                         location: '부산',
                         distance: '310km',
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => DetailOfSaScreen(saIdx:1)),
+                          );
+                        },
                       ),
                       SaCard(
                         profileImageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTgGdgp3hHqr4S29StJmb7C-9p_HgTgHXwXXA&usqp=CAU',
