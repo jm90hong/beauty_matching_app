@@ -8,12 +8,12 @@ import 'package:provider/provider.dart';
 
 
 //TODO 내주변
-class MainPage2 extends StatefulWidget {
+class MainPageAroundMe extends StatefulWidget {
   @override
-  _MainPage2State createState() => _MainPage2State();
+  _MainPageAroundMeState createState() => _MainPageAroundMeState();
 }
 
-class _MainPage2State extends State<MainPage2> {
+class _MainPageAroundMeState extends State<MainPageAroundMe> {
 
   @override
   void initState() {

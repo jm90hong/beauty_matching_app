@@ -44,6 +44,7 @@ dependencies:
 
   carousel_slider: ^2.1.0
   responsive_grid: ^1.2.0
+  badges: ^1.1.1
 
 
 dev_dependencies:

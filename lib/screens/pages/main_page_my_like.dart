@@ -3,12 +3,12 @@ import 'package:beautymatchingapp/ui/card/sil_long_listtile.dart';
 import 'package:flutter/material.dart';
 
 //TODO my찜
-class MainPage3 extends StatefulWidget {
+class MainPageMyLike extends StatefulWidget {
   @override
-  _MainPage3State createState() => _MainPage3State();
+  _MainPageMyLikeState createState() => _MainPageMyLikeState();
 }
 
-class _MainPage3State extends State<MainPage3> {
+class _MainPageMyLikeState extends State<MainPageMyLike> {
 
   @override
   Widget build(BuildContext context) {

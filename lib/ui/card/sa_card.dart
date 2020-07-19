@@ -1,17 +1,19 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/constant/k_widget.dart';
+import 'package:beautymatchingapp/screens/detail_of_sa_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
 class SaCard extends StatefulWidget {
+  final int saIdx;
   final profileImageUrl;
   final nickname;
   final location;
   final distance;
   final Function onTap;
 
-  SaCard({this.profileImageUrl,this.distance,this.location,this.nickname,this.onTap});
+  SaCard({this.saIdx,this.profileImageUrl,this.distance,this.location,this.nickname,this.onTap});
 
   @override
   _SaCardState createState() => _SaCardState();
@@ -23,7 +25,18 @@ class _SaCardState extends State<SaCard> {
   Widget build(BuildContext context){
     return GestureDetector(
       onTap: (){
-        if(widget.onTap !=null){
+        if(widget.onTap==null){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) =>
+                DetailOfSaScreen(
+                  saIdx:widget.saIdx,
+                  nickname:widget.nickname,
+                  profileImageUrl: widget.profileImageUrl,
+                )
+            ),
+          );
+        }else{
           widget.onTap();
         }
       },

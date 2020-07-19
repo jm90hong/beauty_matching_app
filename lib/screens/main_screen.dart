@@ -1,9 +1,12 @@
+import 'package:badges/badges.dart';
 import 'package:beautymatchingapp/constant/k_color.dart';
-import 'package:beautymatchingapp/screens/pages/main_page1.dart';
-import 'package:beautymatchingapp/screens/pages/main_page2.dart';
-import 'package:beautymatchingapp/screens/pages/main_page3.dart';
-import 'package:beautymatchingapp/screens/pages/main_page4.dart';
+import 'package:beautymatchingapp/screens/pages/main_page_home.dart';
+import 'package:beautymatchingapp/screens/pages/main_page_around_me.dart';
+import 'package:beautymatchingapp/screens/pages/main_page_my_like.dart';
+import 'package:beautymatchingapp/screens/pages/main_page_mypage.dart';
+import 'package:beautymatchingapp/screens/pages/main_page_realtime.dart';
 import 'package:beautymatchingapp/vo/session.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -14,14 +17,14 @@ class MainScreen extends StatefulWidget {
   _MainScreenState createState() => _MainScreenState();
 }
 
-
 class _MainScreenState extends State<MainScreen> {
   int _currentPageIndex=0;
   List<Widget> _pages=[
-    MainPage1(), // todo 홈
-    MainPage2(), // todo 내주변
-    MainPage3(), // todo my찜
-    MainPage4(), // todo 내정보
+    MainPageHome(), // todo 홈
+    MainPageAroundMe(), // todo 내주변
+    MainPageRealTime(),
+    MainPageMyLike(), // todo my찜
+    MainPageMyPage(), // todo 내정보
   ];
 
   double bottomNavIconSize = 20;
@@ -59,6 +62,16 @@ class _MainScreenState extends State<MainScreen> {
                   padding: EdgeInsets.only(top:4),
                   child: Text('내주변',style: bottomNavTextStyle)
                 ),
+          ),
+          BottomNavigationBarItem(
+            icon: Badge(
+                badgeContent: Text('2',style: TextStyle(fontSize:10,fontWeight: FontWeight.bold,color: Colors.white),),
+                badgeColor: Color(0xffff3b27),
+                child: Icon(FontAwesomeIcons.list,size:bottomNavIconSize)
+            ),
+            title: Padding(
+                padding: EdgeInsets.only(top:4),
+                child: Text('요청/승인',style: bottomNavTextStyle)),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.star,size:bottomNavIconSize),

@@ -15,13 +15,13 @@ import 'package:responsive_grid/responsive_grid.dart';
 
 
 //TODO 홈
-class MainPage1 extends StatefulWidget {
+class MainPageHome extends StatefulWidget {
   @override
-  _MainPage1State createState() => _MainPage1State();
+  _MainPageHomeState createState() => _MainPageHomeState();
 }
 
 
-class _MainPage1State extends State<MainPage1> {
+class _MainPageHomeState extends State<MainPageHome> {
 
   TextStyle helloTS = TextStyle(
       fontWeight: FontWeight.bold,
@@ -192,12 +192,6 @@ class _MainPage1State extends State<MainPage1> {
                         nickname: '홍정민 짱131',
                         location: '부산',
                         distance: '310km',
-                        onTap: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => DetailOfSaScreen(saIdx:1)),
-                          );
-                        },
                       ),
                       SaCard(
                         profileImageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTgGdgp3hHqr4S29StJmb7C-9p_HgTgHXwXXA&usqp=CAU',
