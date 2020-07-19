@@ -1,6 +1,7 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/constant/k_widget.dart';
 import 'package:beautymatchingapp/constant/my_dialog.dart';
+import 'package:beautymatchingapp/screens/write_request.dart';
 import 'package:beautymatchingapp/ui/card/reply_card.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,12 @@ class _DetailOfSaScreenState extends State<DetailOfSaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(title:widget.nickname),
+      appBar: MyAppBar(
+          title:widget.nickname,
+          actions: <Widget>[
+            Icon(Icons.star_border,size:30,color:kAppMainColor,)
+          ],
+      ),
       body: Container(
         padding: EdgeInsets.only(top:20,left:8,right:8,bottom:0),
         width: double.infinity,
@@ -195,13 +201,9 @@ class _DetailOfSaScreenState extends State<DetailOfSaScreen> {
               child: BottomButton(
                 btnText: '관리사 요청하기',
                 onTap: (){
-                  MyDialog.showConfirmDialog(
-                    context: context,
-                    title:'관리사 요청하기',
-                    content: '${widget.nickname} 관리사님을 요청하시겠습니까?',
-                    onConfirm: (){
-                      print('12321421');
-                    }
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WriteRequest()),
                   );
                 },
               ),

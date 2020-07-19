@@ -105,9 +105,9 @@ class MyAppBar extends StatefulWidget with PreferredSizeWidget {
   @override
   final Size preferredSize;
   final String title;
+  final List<Widget> actions;
 
-
-  MyAppBar({this.title,this.preferredSize:const Size.fromHeight(50.0)});
+  MyAppBar({this.actions,this.title,this.preferredSize:const Size.fromHeight(50.0)});
 
   @override
   _MyAppBarState createState() => _MyAppBarState();
@@ -123,9 +123,7 @@ class _MyAppBarState extends State<MyAppBar> {
       title: Text(widget.title,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize:17),),
       elevation: 0,
       backgroundColor: Colors.white,
-      actions: <Widget>[
-        Icon(Icons.star_border,size:30,color: kAppMainColor,)
-      ],
+      actions: widget.actions,
     );
   }
 }
