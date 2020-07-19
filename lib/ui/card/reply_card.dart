@@ -57,7 +57,7 @@ List<Widget> _buildRatingStars(int rating){
     list.add(star);
   }
   for(int i=0;i < maxRating-rating;i++){
-    Icon star = Icon(Icons.star,size:starSize,color:Colors.grey,);
+    Icon star = Icon(Icons.star,size:starSize,color:Colors.grey.shade400,);
     list.add(star);
   }
   return list;

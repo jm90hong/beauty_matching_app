@@ -40,7 +40,7 @@ class _DetailOfSaScreenState extends State<DetailOfSaScreen> {
           ],
       ),
       body: Container(
-        padding: EdgeInsets.only(top:20,left:8,right:8,bottom:0),
+        padding: EdgeInsets.only(top:0,left:8,right:8,bottom:0),
         width: double.infinity,
         height: double.infinity,
         color: Colors.white,
@@ -52,6 +52,7 @@ class _DetailOfSaScreenState extends State<DetailOfSaScreen> {
                   padding: EdgeInsets.only(bottom:20),
                   child: Column(
                     children: <Widget>[
+                      SizedBox(height: 20,),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
@@ -96,7 +97,7 @@ class _DetailOfSaScreenState extends State<DetailOfSaScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            MyTitle(title: '관리사님 소개',),
+                            MyInfoTitle(title: '관리사님 소개',),
                             SizedBox(height:15,),
                             Container(
                               width: MediaQuery.of(context).size.width*0.8,
@@ -116,7 +117,7 @@ class _DetailOfSaScreenState extends State<DetailOfSaScreen> {
                               ),
                             ),
                             SizedBox(height:25,),
-                            MyTitle(title: '관련 자격/증명',),
+                            MyInfoTitle(title: '관련 자격/증명',),
                             SizedBox(height:15,),
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
@@ -134,39 +135,50 @@ class _DetailOfSaScreenState extends State<DetailOfSaScreen> {
                               ),
                             ),
                             SizedBox(height:25,),
-                            MyTitle(title: '후기',),
+                            MyInfoTitle(title: '후기',),
                             SizedBox(height:10,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Icon(Icons.star,color: kAppMainColor,size:32,),
-                                    SizedBox(width:4,),
-                                    Row(
-                                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                                      textBaseline: TextBaseline.alphabetic,
-                                      children: <Widget>[
-                                        Text('4.3',style: TextStyle(
-                                            color: Colors.black87,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize:26
-                                        ),
-                                        ),
-                                        SizedBox(width:3,),
-                                        Text('/ 5',style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey,
-                                            fontSize:18
-                                        ),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                            Container(
+                              padding: EdgeInsets.only(bottom:15),
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    width:0.5,
+                                    color: Color(0xffeeeeee)
+                                  )
+                                )
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Row(
+                                    children: <Widget>[
+                                      Icon(Icons.star,color: kAppMainColor,size:32,),
+                                      SizedBox(width:4,),
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                                        textBaseline: TextBaseline.alphabetic,
+                                        children: <Widget>[
+                                          Text('4.3',style: TextStyle(
+                                              color: Colors.black87,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize:26
+                                          ),
+                                          ),
+                                          SizedBox(width:3,),
+                                          Text('/ 5',style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.grey,
+                                              fontSize:18
+                                          ),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
 
-                                Text('전체 후기',style: TextStyle(color:Color(0xff2245D3),fontWeight: FontWeight.bold,fontSize:14),)
-                              ],
+                                  Text('전체 후기',style: TextStyle(color:Color(0xff2245D3),fontWeight: FontWeight.bold,fontSize:14),)
+                                ],
+                              ),
                             ),
                             Column(
                               children: <Widget>[
@@ -178,16 +190,16 @@ class _DetailOfSaScreenState extends State<DetailOfSaScreen> {
                                 ),
                                 ReplyCard(
                                   shopName: '부산 하이얀 피부관리',
-                                  rating:4,
+                                  rating:2,
                                   reply: '이분 진짜 잘하시는 분입니다^^',
                                 ),
                                 ReplyCard(
                                   shopName: '부산 하이얀 피부관리',
-                                  rating:4,
+                                  rating:5,
                                   reply: '이분 진짜 잘하시는 분입니다^^',
                                 ),
                               ],
-                            )
+                            ),
                           ],
                         ),
                       )

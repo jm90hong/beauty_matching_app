@@ -13,3 +13,5 @@ const Color kAppMainColor= MaterialColor(_colorCode,const<int,Color>{
   800: Color(_colorCode),
   900: Color(_colorCode),
 });
+
+const Color kGreyPageBGColor = Color(0x00f2f2f2);

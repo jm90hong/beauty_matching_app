@@ -32,9 +32,10 @@ class AppTextStyles {
   static GlobalTextStyle globalTextStyle = const GlobalTextStyle();
 }
 
-class MyTitle extends StatelessWidget {
+
+class MyInfoTitle extends StatelessWidget {
   final String title;
-  MyTitle({@required this.title});
+  MyInfoTitle({@required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +48,93 @@ class MyTitle extends StatelessWidget {
     );
   }
 }
+
+
+class MyFormTitle extends StatelessWidget {
+  final String title;
+  final bool isDone;
+
+  MyFormTitle({@required this.title,@required this.isDone});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Icon(Icons.check_circle,color: isDone? kAppMainColor : Colors.grey.shade300,size:20,),
+        SizedBox(width:6,),
+        Text(title,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black,fontSize:13)),
+      ],
+    );
+  }
+}
+
+class RectangleRadioBox extends StatelessWidget {
+  final double width;
+  final String text;
+  final double height;
+  final bool isSelected;
+  final Function onTap;
+
+  RectangleRadioBox({
+    this.text,
+    this.width,
+    this.height,
+    this.isSelected,
+    this.onTap
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+        if(onTap!=null){
+          onTap();
+        }
+      },
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          color: isSelected ? kAppMainColor : Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          border: Border.all(
+            color: isSelected ? kAppMainColor : Colors.grey.shade400
+          )
+        ),
+        child: Center(
+          child: Text(text,style: TextStyle(
+              color:isSelected ? Colors.white : Colors.grey.shade400,
+              fontWeight: FontWeight.bold,
+              fontSize: 17
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class FormSection extends StatelessWidget {
+  final Widget child;
+  FormSection({@required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      elevation: 1,
+      child: Container(
+        padding: EdgeInsets.only(top: 10,left:8,right:8,bottom:20),
+        color: Colors.white,
+        width: double.infinity,
+        child: child,
+      ),
+    );
+  }
+}
+
+
 
 
 class CardTextStyle {
