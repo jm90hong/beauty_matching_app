@@ -75,13 +75,14 @@ class RectangleRadioBox extends StatelessWidget {
   final double height;
   final bool isSelected;
   final Function onTap;
-
+  final double fontSize;
   RectangleRadioBox({
     this.text,
     this.width,
     this.height,
     this.isSelected,
-    this.onTap
+    this.onTap,
+    this.fontSize
   });
 
   @override
@@ -215,6 +216,52 @@ class _MyAppBarState extends State<MyAppBar> {
     );
   }
 }
+
+
+
+class TimeSelectButton extends StatelessWidget {
+  final bool isSelected;
+  final String text;
+  final Function onTap;
+  final double width;
+  final double height;
+  final double fontSize;
+
+  TimeSelectButton({
+    @required this.onTap,
+    @required this.isSelected,
+    @required this.text,
+    @required this.height,
+    @required this.width,
+    this.fontSize
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.grey.shade200,
+      borderRadius: BorderRadius.all(Radius.circular(10)),
+      child: InkWell(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        onTap: (){
+          onTap();
+        },
+        child: Container(
+          width: width,
+          height: height,
+          child: Center(
+            child: Text(text,style:TextStyle(
+              color: isSelected ? Colors.black : Colors.black26,
+              fontSize:fontSize!=null ? fontSize : 15,
+              fontWeight: FontWeight.bold
+            ),),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 
 class BottomButton extends StatefulWidget {
   final btnText;
