@@ -1,6 +1,5 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/constant/k_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,6 +11,7 @@ class WriteRequest extends StatefulWidget {
 class _WriteRequestState extends State<WriteRequest> {
   String _workType='day'; //todo day, term
   String _startDate='empty';
+  String _endDate='empty';
 
   double titleMargin=30;
   double contentMargin=25;
@@ -49,6 +49,8 @@ class _WriteRequestState extends State<WriteRequest> {
                                   text: '당일',
                                   onTap: (){
                                     setState(() {
+                                      _endDate='empty';
+                                      _startDate='empty';
                                       _workType='day';
                                     });
                                   },
@@ -63,6 +65,8 @@ class _WriteRequestState extends State<WriteRequest> {
                                   text: '기간',
                                   onTap: (){
                                     setState(() {
+                                      _endDate='empty';
+                                      _startDate='empty';
                                       _workType='term';
                                     });
                                   },
@@ -72,54 +76,74 @@ class _WriteRequestState extends State<WriteRequest> {
 
                             //todo 근무 날짜
                             SizedBox(height: titleMargin,),
-                            MyFormTitle(title: '근무 날짜', isDone: false),
+                            MyFormTitle(
+                                title: '근무 날짜',
+                                isDone: _workType=='day' && _startDate!='empty' ? true
+                                    : _workType=='term' && _startDate!='empty' && _endDate!='empty' ? true :false
+                            ),
                             SizedBox(height: contentMargin,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
-                                TimeSelectButton(
-                                  isSelected:_startDate=='empty' ? false : true,
-                                  text: _startDate=='empty' ? '시작 날짜' : _startDate,
-                                  fontSize:_startDate=='empty' ? 15 : 15,
-                                  width: 95,
-                                  height: 36,
-                                  onTap: () async{
-                                    String result = await selectDate(context);
-                                    setState((){
-                                      _startDate=result;
-                                    });
-                                  },
-                                ),
-                                Visibility(
-                                  visible: _workType=='day' ? false : true,
-                                  child: Row(
-                                    children: <Widget>[
-                                      SizedBox(width:5,),
-                                      Text('부터',style: TextStyle(
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    TimeSelectButton(
+                                      isSelected:_startDate=='empty' ? false : true,
+                                      text: _startDate=='empty' ? '시작 날짜' : _startDate,
+                                      fontSize:15,
+                                      width: 160,
+                                      height: 36,
+                                      onTap: () async{
+                                        String result = await selectDate(context);
+                                        setState((){
+                                          _startDate=result;
+                                        });
+                                      },
+                                    ),
+                                    Visibility(
+                                        visible: _workType=='term' ? true : false,
+                                        child: SizedBox(width:8,)),
+                                    Visibility(
+                                      visible: _workType=='term' ? true : false,
+                                      child: Text('부터',style: TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
-                                          fontSize:15),
+                                          fontSize:17),
                                       ),
-                                      SizedBox(width:15,),
+                                    ),
+                                  ],
+                                ),
+                                Visibility(
+                                    visible: _workType=='term' ? true : false,
+                                    child: SizedBox(height:20,)),
+                                Visibility(
+                                  visible: _workType=='term' ? true : false,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
                                       TimeSelectButton(
-                                        isSelected:false,
-                                        text: '종료 날짜',
-                                        width: 95,
+                                        isSelected:_endDate=='empty' ? false : true,
+                                        text: _endDate=='empty' ? '종료 날짜' : _endDate,
+                                        fontSize: 15,
+                                        width: 160,
                                         height: 36,
-                                        onTap: (){
-
+                                        onTap: () async{
+                                          String result = await selectDate(context);
+                                          setState((){
+                                            _endDate=result;
+                                          });
                                         },
                                       ),
-                                      SizedBox(width:5,),
+                                      SizedBox(width:8,),
                                       Text('까지',style: TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
-                                          fontSize:15),
+                                          fontSize:17),
                                       ),
                                     ],
                                   ),
-                                )
-
+                                ),
                               ],
                             ),
                             
