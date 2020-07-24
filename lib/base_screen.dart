@@ -13,6 +13,7 @@ class BaseScreen extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'ng',
         primarySwatch: kAppMainColor,
+        primaryColor: kAppMainColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       localizationsDelegates: [

@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/constant/k_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class WriteRequest extends StatefulWidget {
   @override
@@ -12,10 +15,22 @@ class _WriteRequestState extends State<WriteRequest> {
   String _workType='day'; //todo day, term
   String _startDate='empty';
   String _endDate='empty';
+  String _startTime='empty';
+  String _endTime='empty';
+  String _wageType='hour';
+  int _wage=0;
 
   double titleMargin=30;
   double contentMargin=25;
+  final TextEditingController _wageTxtController = TextEditingController();
+  final TextEditingController _telTxtController = TextEditingController();
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _wageTxtController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +63,7 @@ class _WriteRequestState extends State<WriteRequest> {
                                   isSelected:_workType=='day' ? true : false,
                                   text: '당일',
                                   onTap: (){
+                                    FocusScope.of(context).unfocus();
                                     setState(() {
                                       _endDate='empty';
                                       _startDate='empty';
@@ -64,6 +80,7 @@ class _WriteRequestState extends State<WriteRequest> {
                                   isSelected:_workType=='term' ? true : false,
                                   text: '기간',
                                   onTap: (){
+                                    FocusScope.of(context).unfocus();
                                     setState(() {
                                       _endDate='empty';
                                       _startDate='empty';
@@ -95,7 +112,11 @@ class _WriteRequestState extends State<WriteRequest> {
                                       width: 160,
                                       height: 36,
                                       onTap: () async{
+                                        FocusScope.of(context).unfocus();
                                         String result = await selectDate(context);
+                                        if(result=='empty' && _startDate!='empty'){
+                                          result=_startDate;
+                                        }
                                         setState((){
                                           _startDate=result;
                                         });
@@ -129,7 +150,11 @@ class _WriteRequestState extends State<WriteRequest> {
                                         width: 160,
                                         height: 36,
                                         onTap: () async{
+                                          FocusScope.of(context).unfocus();
                                           String result = await selectDate(context);
+                                          if(result=='empty' && _endDate!='empty'){
+                                            result=_endDate;
+                                          }
                                           setState((){
                                             _endDate=result;
                                           });
@@ -149,7 +174,9 @@ class _WriteRequestState extends State<WriteRequest> {
                             
                             //todo 근무시간
                             SizedBox(height:titleMargin,),
-                            MyFormTitle(title: '근무 시간 (평균)',isDone:false,),
+                            MyFormTitle(title: '근무 시간 (평균)',
+                              isDone:_startTime!='empty' && _endTime!='empty' ? true : false,
+                            ),
                             SizedBox(height:4,),
                             Text('상세한 근무시간은 연락처를 통하여 상의해주세요.',
                               style:TextStyle(color: Colors.black54,fontSize:11),
@@ -159,11 +186,19 @@ class _WriteRequestState extends State<WriteRequest> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                   TimeSelectButton(
-                                    isSelected:false,
-                                    text: '시작 시각',
+                                    isSelected:_startTime!='empty' ? true : false,
+                                    text: _startTime!='empty' ? _startTime : '시작 시각',
                                     width: 95,
                                     height: 36,
-                                    onTap: (){
+                                    onTap: () async{
+                                      FocusScope.of(context).unfocus();
+                                      String result = await selectTime(context);
+                                      if(result=='empty' && _startTime!='empty'){
+                                        result=_startTime;
+                                      }
+                                      setState(() {
+                                        _startTime=result;
+                                      });
 
                                     },
                                   ),
@@ -175,11 +210,19 @@ class _WriteRequestState extends State<WriteRequest> {
                                   ),
                                   SizedBox(width:15,),
                                   TimeSelectButton(
-                                    isSelected:false,
-                                    text: '종료 시각',
+                                    isSelected:_endTime!='empty' ? true : false,
+                                    text: _endTime!='empty' ? _endTime : '종료 시각',
                                     width: 95,
                                     height: 36,
-                                    onTap: (){
+                                    onTap: () async{
+                                      FocusScope.of(context).unfocus();
+                                      String result = await selectTime(context);
+                                      if(result=='empty' && _endTime!='empty'){
+                                        result=_endTime;
+                                      }
+                                      setState(() {
+                                        _endTime=result;
+                                      });
 
                                     },
                                   ),
@@ -192,7 +235,9 @@ class _WriteRequestState extends State<WriteRequest> {
                               ],
                             ),
                             SizedBox(height: titleMargin,),
-                            MyFormTitle(title: '일일 급여',isDone:false,),
+                            MyFormTitle(title: '일일 급여',
+                              isDone:_wage>=1000 ? true : false,
+                            ),
                             SizedBox(height:4,),
                             Text('상세한 급여 사항은 연락처를 통하여 상의해주세요.',
                               style:TextStyle(color: Colors.black54,fontSize:11),
@@ -204,6 +249,12 @@ class _WriteRequestState extends State<WriteRequest> {
                                 Container(
                                   width:105,
                                   child: TextField(
+                                      controller: _wageTxtController,
+                                      onChanged: (text){
+                                        setState(() {
+                                          _wage=int.parse(text);
+                                        });
+                                      },
                                       cursorColor:Colors.black,
                                       keyboardType:TextInputType.number,
                                       inputFormatters:[WhitelistingTextInputFormatter.digitsOnly],
@@ -220,33 +271,56 @@ class _WriteRequestState extends State<WriteRequest> {
                                 Text('원',style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
-                                    fontSize:16),
+                                    fontSize:16
+                                  ),
                                 ),
                                 SizedBox(width:20,),
                                 Row(
                                   children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        Icon(Icons.check_box,color: kAppMainColor,),
-                                        SizedBox(width: 3,),
-                                        Text('시간',style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14
-                                        ),)
-                                      ],
+                                    GestureDetector(
+                                      onTap: (){
+                                        setState(() {
+                                          _wageType='hour';
+                                        });
+                                      },
+                                      child: Container(
+                                        child: Row(
+                                          children: <Widget>[
+                                            Icon(Icons.check_box,
+                                              color:_wageType=='hour' ? kAppMainColor : Colors.grey.shade300,
+                                            ),
+                                            SizedBox(width: 3,),
+                                            Text('시간',style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14
+                                            ),)
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                     SizedBox(width:10,),
-                                    Row(
-                                      children: <Widget>[
-                                        Icon(Icons.check_box,color: Colors.grey.shade300,),
-                                        SizedBox(width: 3,),
-                                        Text('일일',style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14
-                                        ),)
-                                      ],
+                                    GestureDetector(
+                                      onTap: (){
+                                        setState(() {
+                                          _wageType='day';
+                                        });
+                                      },
+                                      child: Container(
+                                        child: Row(
+                                          children: <Widget>[
+                                            Icon(Icons.check_box,
+                                              color: _wageType=='day' ? kAppMainColor : Colors.grey.shade300,
+                                            ),
+                                            SizedBox(width: 3,),
+                                            Text('일일',style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14
+                                            ),)
+                                          ],
+                                        ),
+                                      ),
                                     )
 
                                   ],
@@ -294,7 +368,8 @@ class _WriteRequestState extends State<WriteRequest> {
                   onTap:(){
 
                   },
-                  btnText:'요청하기')
+                  btnText:'요청하기'
+              )
             ],
           ),
         ),
@@ -304,13 +379,15 @@ class _WriteRequestState extends State<WriteRequest> {
 }
 
 
-Future<String> selectDate(BuildContext context,{helpText}) async {
+
+
+Future<String> selectDate(BuildContext context,{String helpText}) async {
   DateTime picked = await showDatePicker(
     helpText: helpText,
     context: context,
     locale: const Locale('ko', 'KO'),
     initialDate: DateTime.now(),
-    firstDate: DateTime(2015),
+    firstDate: DateTime(2020),
     lastDate: DateTime(2090),
     builder: (BuildContext context, Widget child) {
       return Theme(
@@ -331,13 +408,52 @@ Future<String> selectDate(BuildContext context,{helpText}) async {
       case 6:weekdayKor='토';break;
       case 7:weekdayKor='일';break;
     }
-//    _playDateController.text='${picked.toString().substring(0, 10 )} $weekdayKor요일';
-//    validPlayDate=true;
-//    playDate='${picked.toString().substring(0, 10 )} $weekdayKor';
-
-
     return '${picked.toString().substring(0, 10 )} $weekdayKor요일';
   } else {
+    return 'empty';
+  }
+}
+
+
+Future<String> selectTime(BuildContext context) async{
+  int hour=12;
+  TimeOfDay picked = await showTimePicker(
+    context: context,
+    initialTime: TimeOfDay(hour:hour, minute:0),
+    builder: (BuildContext context, Widget child) {
+      return Theme(
+        data: ThemeData(primarySwatch: kAppMainColor, splashColor:kAppMainColor,),
+        child: MediaQuery(
+          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+          child: child,
+        ),
+      );
+    },
+  );
+
+  if(picked !=null){
+    String minStr;
+    String hrStr;
+    String pmOram;
+    if(picked.hour<11 && picked.hour>=0){
+      pmOram='오전';
+    }else{
+      pmOram='오후';
+    }
+
+    if(picked.hour<10){
+      hrStr='0${picked.hour.toString()}';
+    }else{
+      hrStr=picked.hour.toString();
+    }
+    if(picked.minute<10){
+      minStr='0${picked.minute.toString()}';
+    }else{
+      minStr=picked.minute.toString();
+    }
+
+    return pmOram+' '+hrStr+':'+minStr;
+  }else{
     return 'empty';
   }
 }
