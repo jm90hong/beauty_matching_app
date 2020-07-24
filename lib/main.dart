@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'models/location_model.dart';
 import 'models/user_model.dart';
 
-
+//todo main.dart
 void main() {
   runApp(MyApp());
 }
