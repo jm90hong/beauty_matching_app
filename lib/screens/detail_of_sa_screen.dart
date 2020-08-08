@@ -36,7 +36,12 @@ class _DetailOfSaScreenState extends State<DetailOfSaScreen> {
       appBar: MyAppBar(
           title:widget.nickname,
           actions: <Widget>[
-            Icon(Icons.star_border,size:30,color:kAppMainColor,)
+            IconButton(
+              icon: Icon(Icons.star_border,size:30,color:kAppMainColor,),
+              onPressed: (){
+
+              },
+            )
           ],
       ),
       body: Container(

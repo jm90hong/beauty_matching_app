@@ -126,7 +126,7 @@ class FormSection extends StatelessWidget {
     return Material(
       elevation: 1,
       child: Container(
-        padding: EdgeInsets.only(top: 10,left:8,right:8,bottom:20),
+        padding: EdgeInsets.only(top: 15,left:8,right:8,bottom:30),
         color: Colors.white,
         width: double.infinity,
         child: child,
@@ -209,7 +209,14 @@ class _MyAppBarState extends State<MyAppBar> {
       iconTheme: IconThemeData(
         color: Colors.black
       ),
-      title: Text(widget.title,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize:17),),
+      title: Text(
+        widget.title,
+        style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize:16
+        ),
+      ),
       elevation: 0,
       backgroundColor: Colors.white,
       actions: widget.actions,
@@ -298,5 +305,49 @@ class _BottomButtonState extends State<BottomButton> {
   }
 }
 
+class MyTextArea extends StatefulWidget {
+  final Function onChanged;
+  final TextEditingController textEditingController;
+  final String hintText;
+  MyTextArea({
+    this.textEditingController,
+    this.onChanged,
+    this.hintText
+  });
+
+
+  @override
+  _MyTextAreaState createState() => _MyTextAreaState();
+}
+
+class _MyTextAreaState extends State<MyTextArea> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      child: TextFormField(
+        style: TextStyle(color: Colors.black,fontSize:13),
+        cursorColor: Colors.black,
+        controller: widget.textEditingController,
+        minLines:3,
+        maxLines: null,
+        readOnly: false,
+        onChanged: (value){
+          widget.onChanged(value);
+        },
+        keyboardType: TextInputType.multiline,
+        textAlignVertical: TextAlignVertical.top,
+        decoration: InputDecoration(
+          hintText: widget.hintText,
+          border: OutlineInputBorder(),
+          contentPadding: EdgeInsets.all(8.0),
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey.shade300,)
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 

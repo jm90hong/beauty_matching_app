@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/constant/k_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -18,16 +19,24 @@ class _WriteRequestState extends State<WriteRequest> {
   String _startTime='empty';
   String _endTime='empty';
   String _wageType='hour';
+  String _bedName='empty';
+  String _memo;
   int _wage=0;
 
-  double titleMargin=30;
-  double contentMargin=25;
+
+  bool _doIuseTelOfMyInfo=false;
+
+  double titleMargin=28;
+  double contentMargin=18;
   final TextEditingController _wageTxtController = TextEditingController();
   final TextEditingController _telTxtController = TextEditingController();
+  final TextEditingController _memoTxtController = TextEditingController();
 
   @override
   void dispose() {
     // TODO: implement dispose
+    _memoTxtController.dispose();
+    _telTxtController.dispose();
     _wageTxtController.dispose();
     super.dispose();
   }
@@ -51,6 +60,17 @@ class _WriteRequestState extends State<WriteRequest> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
+                            //todo 필수 입력...
+
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 4,horizontal: 10),
+                              decoration: BoxDecoration(
+                                color: kAppMainColor,
+                                borderRadius: BorderRadius.all(Radius.circular(10))
+                              ),
+                              child: Text('필수 입력',style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.bold),),
+                            ),
+                            SizedBox(height: 15,),
                             //todo 근무 타입
                             MyFormTitle(title: '근무 타입',isDone:true,),
                             SizedBox(height:contentMargin,),
@@ -137,7 +157,8 @@ class _WriteRequestState extends State<WriteRequest> {
                                 ),
                                 Visibility(
                                     visible: _workType=='term' ? true : false,
-                                    child: SizedBox(height:20,)),
+                                    child: SizedBox(height:20,)
+                                ),
                                 Visibility(
                                   visible: _workType=='term' ? true : false,
                                   child: Row(
@@ -171,20 +192,118 @@ class _WriteRequestState extends State<WriteRequest> {
                                 ),
                               ],
                             ),
-                            
-                            //todo 근무시간
-                            SizedBox(height:titleMargin,),
-                            MyFormTitle(title: '근무 시간 (평균)',
-                              isDone:_startTime!='empty' && _endTime!='empty' ? true : false,
+                            SizedBox(height: titleMargin,),
+                            MyFormTitle(title: '베드 선택',
+                              isDone:_bedName=='empty' ? false : true,),
+                            SizedBox(height: contentMargin,),
+                            Container(
+                              width: double.infinity,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  BedDropDownWidget(
+                                    listOfBedName: ['베드 1','베드 2','베드 3','베드 4','베드 5','베드 6','베드 7',],
+                                    onChanged: (newValue){
+                                      setState(() {
+                                        _bedName=newValue;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
                             ),
-                            SizedBox(height:4,),
-                            Text('상세한 근무시간은 연락처를 통하여 상의해주세요.',
-                              style:TextStyle(color: Colors.black54,fontSize:11),
+                            SizedBox(height: titleMargin,),
+                            MyFormTitle(title: '연락처',isDone:false,),
+                            SizedBox(height: contentMargin,),
+                            GestureDetector(
+                              onTap: (){
+                                setState(() {
+                                  _doIuseTelOfMyInfo = !_doIuseTelOfMyInfo;
+                                });
+                              },
+                              child: Container(
+                                child: Row(
+                                  children: <Widget>[
+                                    Icon(Icons.check_box,
+                                      color: _doIuseTelOfMyInfo ? kAppMainColor : Colors.grey.shade300,
+                                    ),
+                                    SizedBox(width: 3,),
+                                    Text('회원정보와 동일한 연락처 사용',style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14
+                                    ),),
+                                  ],
+                                ),
+                              ),
                             ),
-                            SizedBox(height:contentMargin,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
+                            SizedBox(height:20,),
+                            Container(
+                              width: 200,
+                              child: TextField(
+                                cursorColor:Colors.black,
+                                keyboardType:TextInputType.number,
+                                inputFormatters:[WhitelistingTextInputFormatter.digitsOnly],
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.only(left: 4,bottom:10),
+                                  hintText: '010xxxxyyyy',
+                                  hintStyle: TextStyle(color: Colors.grey.shade400),
+                                  isDense: true,
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey.shade300),
+                                  ),
+                                  border: UnderlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey.shade300),
+                                  ),
+                                ),
+                                style: TextStyle(color: Colors.black,fontSize:18,fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 30,),
+                      FormSection(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 4,horizontal: 10),
+                                decoration: BoxDecoration(
+                                    color: kAppMainColor,
+                                    borderRadius: BorderRadius.all(Radius.circular(10))
+                                ),
+                                child: Text('선택 입력',style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.bold),),
+                              ),
+                              SizedBox(height: 15,),
+                              //todo 요청 사항
+                              MyFormTitle(title: '요청 사항',
+                                isDone:_memo==null || _memo=='' ? false : true,
+                              ),
+                              SizedBox(height: contentMargin,),
+                              MyTextArea(
+                                textEditingController: _memoTxtController,
+                                hintText: 'ex) 제품 준비 및 요청사항',
+                                onChanged: (value){
+                                  setState(() {
+                                    _memo=value;
+                                  });
+                                },
+                              ),
+                              SizedBox(height: titleMargin,),
+
+                              //todo 근무시간
+                              MyFormTitle(title: '근무 시간 (평균)',
+                                isDone:_startTime!='empty' && _endTime!='empty' ? true : false,
+                              ),
+                              SizedBox(height:4,),
+                              Text('상세한 근무시간은 연락처를 통하여 상의해주세요.',
+                                style:TextStyle(color: Colors.black54,fontSize:11),
+                              ),
+                              SizedBox(height:contentMargin,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
                                   TimeSelectButton(
                                     isSelected:_startTime!='empty' ? true : false,
                                     text: _startTime!='empty' ? _startTime : '시작 시각',
@@ -193,9 +312,6 @@ class _WriteRequestState extends State<WriteRequest> {
                                     onTap: () async{
                                       FocusScope.of(context).unfocus();
                                       String result = await selectTime(context);
-                                      if(result=='empty' && _startTime!='empty'){
-                                        result=_startTime;
-                                      }
                                       setState(() {
                                         _startTime=result;
                                       });
@@ -217,13 +333,9 @@ class _WriteRequestState extends State<WriteRequest> {
                                     onTap: () async{
                                       FocusScope.of(context).unfocus();
                                       String result = await selectTime(context);
-                                      if(result=='empty' && _endTime!='empty'){
-                                        result=_endTime;
-                                      }
                                       setState(() {
                                         _endTime=result;
                                       });
-
                                     },
                                   ),
                                   SizedBox(width:5,),
@@ -232,23 +344,23 @@ class _WriteRequestState extends State<WriteRequest> {
                                       fontWeight: FontWeight.bold,
                                       fontSize:15),
                                   ),
-                              ],
-                            ),
-                            SizedBox(height: titleMargin,),
-                            MyFormTitle(title: '일일 급여',
-                              isDone:_wage>=1000 ? true : false,
-                            ),
-                            SizedBox(height:4,),
-                            Text('상세한 급여 사항은 연락처를 통하여 상의해주세요.',
-                              style:TextStyle(color: Colors.black54,fontSize:11),
-                            ),
-                            SizedBox(height: contentMargin,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Container(
-                                  width:105,
-                                  child: TextField(
+                                ],
+                              ),
+                              SizedBox(height: titleMargin,),
+                              MyFormTitle(title: '일일 급여',
+                                isDone:_wage>=1000 ? true : false,
+                              ),
+                              SizedBox(height:4,),
+                              Text('상세한 급여 사항은 연락처를 통하여 상의해주세요.',
+                                style:TextStyle(color: Colors.black54,fontSize:11),
+                              ),
+                              SizedBox(height: contentMargin,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Container(
+                                    width:105,
+                                    child: TextField(
                                       controller: _wageTxtController,
                                       onChanged: (text){
                                         setState(() {
@@ -263,103 +375,72 @@ class _WriteRequestState extends State<WriteRequest> {
                                         hintText: '8,590',
                                         hintStyle: TextStyle(color: Colors.grey.shade400),
                                         isDense: true,
+                                      ),
+                                      style: TextStyle(color: Colors.black,fontSize:18,fontWeight: FontWeight.bold),
                                     ),
-                                    style: TextStyle(color: Colors.black,fontSize:18,fontWeight: FontWeight.bold),
                                   ),
-                                ),
-                                SizedBox(width:4,),
-                                Text('원',style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize:16
+                                  SizedBox(width:4,),
+                                  Text('원',style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize:16
                                   ),
-                                ),
-                                SizedBox(width:20,),
-                                Row(
-                                  children: <Widget>[
-                                    GestureDetector(
-                                      onTap: (){
-                                        setState(() {
-                                          _wageType='hour';
-                                        });
-                                      },
-                                      child: Container(
-                                        child: Row(
-                                          children: <Widget>[
-                                            Icon(Icons.check_box,
-                                              color:_wageType=='hour' ? kAppMainColor : Colors.grey.shade300,
-                                            ),
-                                            SizedBox(width: 3,),
-                                            Text('시간',style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14
-                                            ),)
-                                          ],
+                                  ),
+                                  SizedBox(width:20,),
+                                  Row(
+                                    children: <Widget>[
+                                      GestureDetector(
+                                        onTap: (){
+                                          setState(() {
+                                            _wageType='hour';
+                                          });
+                                        },
+                                        child: Container(
+                                          child: Row(
+                                            children: <Widget>[
+                                              Icon(Icons.check_box,
+                                                color:_wageType=='hour' ? kAppMainColor : Colors.grey.shade300,
+                                              ),
+                                              SizedBox(width: 3,),
+                                              Text('시간',style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14
+                                              ),)
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(width:10,),
-                                    GestureDetector(
-                                      onTap: (){
-                                        setState(() {
-                                          _wageType='day';
-                                        });
-                                      },
-                                      child: Container(
-                                        child: Row(
-                                          children: <Widget>[
-                                            Icon(Icons.check_box,
-                                              color: _wageType=='day' ? kAppMainColor : Colors.grey.shade300,
-                                            ),
-                                            SizedBox(width: 3,),
-                                            Text('일일',style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14
-                                            ),)
-                                          ],
+                                      SizedBox(width:10,),
+                                      GestureDetector(
+                                        onTap: (){
+                                          setState(() {
+                                            _wageType='day';
+                                          });
+                                        },
+                                        child: Container(
+                                          child: Row(
+                                            children: <Widget>[
+                                              Icon(Icons.check_box,
+                                                color: _wageType=='day' ? kAppMainColor : Colors.grey.shade300,
+                                              ),
+                                              SizedBox(width: 3,),
+                                              Text('일일',style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14
+                                              ),)
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    )
+                                      )
 
-                                  ],
-                                )
-                              ],
-                            ),
-                            SizedBox(height: titleMargin,),
-                            MyFormTitle(title: '연락처',isDone:false,),
-                            SizedBox(height: contentMargin,),
-                            Row(
-                              children: <Widget>[
-                                Icon(Icons.check_box,color: Colors.grey.shade300,),
-                                SizedBox(width: 3,),
-                                Text('회원정보와 동일한 연락처 사용',style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14
-                                ),),
-                              ],
-                            ),
-                            SizedBox(height:20,),
-                            Container(
-                              width: 200,
-                              child: TextField(
-                                cursorColor:Colors.black,
-                                keyboardType:TextInputType.number,
-                                inputFormatters:[WhitelistingTextInputFormatter.digitsOnly],
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(left: 4,bottom:10),
-                                  hintText: '010xxxxyyyy',
-                                  hintStyle: TextStyle(color: Colors.grey.shade400),
-                                  isDense: true,
-                                ),
-                                style: TextStyle(color: Colors.black,fontSize:18,fontWeight: FontWeight.bold),
+                                    ],
+                                  )
+                                ],
                               ),
-                            )
-                          ],
-                        ),
-                      )
+                            ],
+                      ))
                     ],
                   ),
                 ),
@@ -457,3 +538,77 @@ Future<String> selectTime(BuildContext context) async{
     return 'empty';
   }
 }
+
+
+class BedDropDownWidget extends StatefulWidget {
+  final Function onChanged;
+  final List<String> listOfBedName;
+  BedDropDownWidget({
+    @required this.onChanged,
+    @required this.listOfBedName
+  });
+
+
+  @override
+  _BedDropDownWidgetState createState() => _BedDropDownWidgetState();
+}
+
+class _BedDropDownWidgetState extends State<BedDropDownWidget> {
+  List<String> list = ['empty'];
+  String selectedValue='empty';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    list.addAll(widget.listOfBedName);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 5,horizontal: 20),
+
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        border: Border.all(
+          color: Colors.grey.shade300,
+          width: 1
+        )
+      ),
+      child: DropdownButton<String>(
+        value: selectedValue,
+        icon: Icon(Icons.arrow_drop_down),
+        iconSize: 20,
+        elevation: 16,
+        isDense: true,
+        iconEnabledColor: Colors.black54,
+        style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize:15),
+        underline: Container(
+          color: Colors.transparent,
+        ),
+        onChanged: (String newValue) {
+          if(widget.onChanged !=null){
+            widget.onChanged(newValue);
+          }
+          setState(() {
+            selectedValue=newValue;
+          });
+        },
+        items: list
+            .map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value == 'empty' ? '베드 선택' : value,
+              style: TextStyle(color: Colors.black54),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+}
+
+

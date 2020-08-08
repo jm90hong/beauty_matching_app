@@ -1,6 +1,7 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/other/my_scroll_behavior.dart';
 import 'package:beautymatchingapp/screens/detail_of_sa_screen.dart';
+import 'package:beautymatchingapp/screens/detail_of_sil_screen.dart';
 import 'package:beautymatchingapp/ui/card/sa_card.dart';
 import 'package:beautymatchingapp/ui/card/sa_card_type_2.dart';
 import 'package:beautymatchingapp/ui/card/sil_card.dart';
@@ -161,6 +162,14 @@ class _MainPageHomeState extends State<MainPageHome> {
                         location: '부산',
                         distance: '310km',
                         numberOfSa: 2,
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => DetailOfSilScreen(
+                              shopName: '부산 좋은 피부관리실',
+                            )),
+                          );
+                        },
                       ),
                       SilCard(
                         shopImageUrl: 'https://post-phinf.pstatic.net/MjAxNzA5MTJfMjM3/MDAxNTA1MTgxOTcxOTIx.8EN-sj_AB0XCZeCRiKVINy6U9XsPCTk0J69Cx69nA-Mg.Gt2ISmMDBzIwWqfHhiiZP5qN9JbO0YmtNQ_0Fh8Rz3Yg.JPEG/%ED%94%BC%EB%B6%80%EA%B4%80%EB%A6%AC_%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4.jpg?type=w1200',
