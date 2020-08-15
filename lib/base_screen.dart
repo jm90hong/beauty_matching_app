@@ -1,4 +1,5 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
+import 'package:beautymatchingapp/constant/k_widget.dart';
 import 'package:beautymatchingapp/screens/main_screen.dart';
 import 'package:beautymatchingapp/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,12 @@ class BaseScreen extends StatelessWidget {
         const Locale('en', 'US'),
         const Locale('ko', 'KO'),
       ],
+      builder: (context,child){
+        return ScrollConfiguration(
+            behavior: MyBehavior(),
+            child: child
+        );
+      },
       initialRoute: SplashScreen.id,
       routes: {
         SplashScreen.id: (context) => SplashScreen(),

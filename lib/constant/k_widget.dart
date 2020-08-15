@@ -226,6 +226,74 @@ class _MyAppBarState extends State<MyAppBar> {
 
 
 
+class OverlayingAppBar extends StatefulWidget {
+  final String title;
+  final bool isLike;
+  final Color backgroundColor;
+  final Color widgetColor;
+  final Color titleColor;
+  final Color starColor;
+
+  OverlayingAppBar({
+    @required this.title,
+    @required this.isLike,
+    @required this.backgroundColor,
+    @required this.starColor,
+    @required this.widgetColor,
+    @required this.titleColor
+  });
+
+  @override
+  _OverlayingAppBarState createState() => _OverlayingAppBarState();
+}
+
+class _OverlayingAppBarState extends State<OverlayingAppBar> {
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 50,
+      color:widget.backgroundColor,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: widget.widgetColor,
+                ),
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+              ),
+              SizedBox(width:20,),
+              Text(widget.title,style: TextStyle(color:widget.titleColor,fontWeight: FontWeight.bold,fontSize: 16),)
+            ],
+          ),
+
+          IconButton(
+            icon: Icon(Icons.star_border,color: widget.starColor,size: 30,),
+            onPressed: (){
+
+            },
+          )
+
+
+
+        ],
+      ),
+    );
+  }
+}
+
+
+
+
 class TimeSelectButton extends StatelessWidget {
   final bool isSelected;
   final String text;
@@ -351,3 +419,10 @@ class _MyTextAreaState extends State<MyTextArea> {
 }
 
 
+class MyBehavior extends ScrollBehavior {
+  @override
+  Widget buildViewportChrome(
+      BuildContext context, Widget child, AxisDirection axisDirection) {
+    return child;
+  }
+}
