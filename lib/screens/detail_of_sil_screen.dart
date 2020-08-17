@@ -312,6 +312,12 @@ class _DetailOfSilScreenState extends State<DetailOfSilScreen> with TickerProvid
                                       numberOfSa: 1,
                                       latitude: 34.1,
                                       longitude: 127.1,
+                                      onTap: (){
+                                        //todo 요청 상세 페이지로 이동...
+
+
+
+                                      },
                                     ),
                                     RequestFromSilListTile(
                                       workType: 'term',

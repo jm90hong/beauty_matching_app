@@ -7,21 +7,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
-class WriteRequest extends StatefulWidget {
+class WriteRequestScreen extends StatefulWidget {
 
   final String saNickname;
   final String requestType; //todo d, a
 
-  WriteRequest({
+  WriteRequestScreen({
     @required this.saNickname,
     @required this.requestType
   });
 
   @override
-  _WriteRequestState createState() => _WriteRequestState();
+  _WriteRequestScreenState createState() => _WriteRequestScreenState();
 }
 
-class _WriteRequestState extends State<WriteRequest> {
+class _WriteRequestScreenState extends State<WriteRequestScreen> {
   int _numberOfSa=1;
   String _workType='day'; //todo day, term
   String _startDate='empty';

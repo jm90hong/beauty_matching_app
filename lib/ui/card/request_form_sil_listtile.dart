@@ -14,6 +14,7 @@ class RequestFromSilListTile extends StatefulWidget {
   final String workTime;
   final double longitude;
   final double latitude;
+  final Function onTap;
 
 
   RequestFromSilListTile({
@@ -25,6 +26,7 @@ class RequestFromSilListTile extends StatefulWidget {
     @required this.latitude,
     @required this.longitude,
     @required this.numberOfSa,
+    this.onTap,
     this.workTime,
   });
 
@@ -55,68 +57,75 @@ class _RequestFromSilListTileState extends State<RequestFromSilListTile> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top:10),
-      child: Container(
-        padding: EdgeInsets.only(left: 8,right: 8),
-        width: MediaQuery.of(context).size.width,
-        height:75,
-        child: Row(
-          children: <Widget>[
-            Container(
-              width: 75,
-              height: 75,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(widget.shopImageUrl)
-                ),
-                borderRadius: BorderRadius.all(Radius.circular(8.0))
-              ),
-            ),
-
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.only(left:10,top: 6),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text('[${widget.city}] ${widget.shopName}' ,style: AppTextStyles.cardTextStyle.title,),
-                    SizedBox(height: 2,),
-                    Text('부산광역시 연제구 부산 시청 1001 1층',style: TextStyle(
-                        color: Colors.grey,
-                        fontSize:10,
-                        fontWeight: FontWeight.normal,
-                    ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(height: 3,),
-                    Row(
-                      children: <Widget>[
-                        _buildWorkTypeTag(workType:widget.workType),
-                        SizedBox(width: 3,),
-                        Text(widget.workDate,style: TextStyle(
-                            color: Colors.black,
-                            fontWeight:FontWeight.normal,
-                            fontSize:widget.workType=='day' ? 12 : 11
-                        ),)
-                      ],
-                    ),
-                    SizedBox(height:3),
-                    Row(
-                      children: <Widget>[
-                        Text('${widget.numberOfSa}명 모집',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 11),),
-                        SizedBox(width:12,),
-                        Icon(FontAwesomeIcons.arrowsAltH,size:11,color: Colors.grey,),
-                        SizedBox(width:6,),
-                        Text('12km',style:TextStyle(color: Colors.black,fontWeight: FontWeight.normal,fontSize:12),)
-                      ],
-                    )
-
-
-                  ],
+      child: GestureDetector(
+        onTap: (){
+          if(widget.onTap!=null){
+            widget.onTap();
+          }
+        },
+        child: Container(
+          padding: EdgeInsets.only(left: 8,right: 8),
+          width: MediaQuery.of(context).size.width,
+          height:75,
+          child: Row(
+            children: <Widget>[
+              Container(
+                width: 75,
+                height: 75,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(widget.shopImageUrl)
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(8.0))
                 ),
               ),
-            ),
-          ],
+
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.only(left:10,top: 6),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text('[${widget.city}] ${widget.shopName}' ,style: AppTextStyles.cardTextStyle.title,),
+                      SizedBox(height: 2,),
+                      Text('부산광역시 연제구 부산 시청 1001 1층',style: TextStyle(
+                          color: Colors.grey,
+                          fontSize:10,
+                          fontWeight: FontWeight.normal,
+                      ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      SizedBox(height: 3,),
+                      Row(
+                        children: <Widget>[
+                          _buildWorkTypeTag(workType:widget.workType),
+                          SizedBox(width: 3,),
+                          Text(widget.workDate,style: TextStyle(
+                              color: Colors.black,
+                              fontWeight:FontWeight.normal,
+                              fontSize:widget.workType=='day' ? 12 : 11
+                          ),)
+                        ],
+                      ),
+                      SizedBox(height:3),
+                      Row(
+                        children: <Widget>[
+                          Text('${widget.numberOfSa}명 모집',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 11),),
+                          SizedBox(width:12,),
+                          Icon(FontAwesomeIcons.arrowsAltH,size:11,color: Colors.grey,),
+                          SizedBox(width:6,),
+                          Text('12km',style:TextStyle(color: Colors.black,fontWeight: FontWeight.normal,fontSize:12),)
+                        ],
+                      )
+
+
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

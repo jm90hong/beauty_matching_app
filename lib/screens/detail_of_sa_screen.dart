@@ -1,7 +1,7 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/constant/k_widget.dart';
 import 'package:beautymatchingapp/constant/my_dialog.dart';
-import 'package:beautymatchingapp/screens/write_request.dart';
+import 'package:beautymatchingapp/screens/write_request_screen.dart';
 import 'package:beautymatchingapp/ui/card/reply_card.dart';
 import 'package:flutter/material.dart';
 
@@ -220,7 +220,7 @@ class _DetailOfSaScreenState extends State<DetailOfSaScreen> {
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => WriteRequest(
+                    MaterialPageRoute(builder: (context) => WriteRequestScreen(
                       saNickname: widget.nickname,
                       requestType: 'd',
                     )),
