@@ -2,8 +2,8 @@ import 'package:beautymatchingapp/constant/app_config.dart';
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/constant/k_widget.dart';
 import 'package:beautymatchingapp/main.dart';
+import 'package:beautymatchingapp/ui/card/request_form_sil_listtile.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -303,7 +303,26 @@ class _DetailOfSilScreenState extends State<DetailOfSilScreen> with TickerProvid
                               Container(
                                 child: Column(
                                   children: <Widget>[
-
+                                    RequestFromSilListTile(
+                                      workType: 'day',
+                                      workDate: '2020-08-18 화',
+                                      shopName:'좋은 피부관리실',
+                                      shopImageUrl:'https://t1.daumcdn.net/cfile/blog/120482504ED6DC0626' ,
+                                      city: '부산',
+                                      numberOfSa: 1,
+                                      latitude: 34.1,
+                                      longitude: 127.1,
+                                    ),
+                                    RequestFromSilListTile(
+                                      workType: 'term',
+                                      workDate: '2020-08-18 화 ~ 2020-08-20 수',
+                                      shopName:'좋은 피부관리실',
+                                      shopImageUrl:'https://t1.daumcdn.net/cfile/blog/120482504ED6DC0626',
+                                      city: '부산',
+                                      numberOfSa: 1,
+                                      latitude: 34.1,
+                                      longitude: 127.1,
+                                    ),
                                   ],
                                 ),
                               )

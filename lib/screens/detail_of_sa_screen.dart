@@ -222,6 +222,7 @@ class _DetailOfSaScreenState extends State<DetailOfSaScreen> {
                     context,
                     MaterialPageRoute(builder: (context) => WriteRequest(
                       saNickname: widget.nickname,
+                      requestType: 'd',
                     )),
                   );
                 },

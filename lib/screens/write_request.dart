@@ -10,13 +10,19 @@ import 'package:intl/intl.dart';
 class WriteRequest extends StatefulWidget {
 
   final String saNickname;
-  WriteRequest({@required this.saNickname});
+  final String requestType; //todo d, a
+
+  WriteRequest({
+    @required this.saNickname,
+    @required this.requestType
+  });
 
   @override
   _WriteRequestState createState() => _WriteRequestState();
 }
 
 class _WriteRequestState extends State<WriteRequest> {
+  int _numberOfSa=1;
   String _workType='day'; //todo day, term
   String _startDate='empty';
   String _endDate='empty';
@@ -35,6 +41,13 @@ class _WriteRequestState extends State<WriteRequest> {
   final TextEditingController _wageTxtController = TextEditingController();
   final TextEditingController _telTxtController = TextEditingController();
   final TextEditingController _memoTxtController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
 
   @override
   void dispose() {
@@ -64,12 +77,16 @@ class _WriteRequestState extends State<WriteRequest> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            //todo 필수 입력...
-                            Text(
-                              '${widget.saNickname} 님에게 요청',
-                              style: TextStyle(color: Colors.black87,fontWeight: FontWeight.bold,fontSize: 14),
+
+                            Visibility(
+                              visible: widget.requestType=='d' ? true : false,
+                              child: Text(
+                                '${widget.saNickname} 님에게 요청',
+                                style: TextStyle(color: Colors.black87,fontWeight: FontWeight.bold,fontSize: 14),
+                              ),
                             ),
                             SizedBox(height: 20,),
+                            //todo 필수 입력...
                             Container(
                               padding: EdgeInsets.symmetric(vertical: 4,horizontal: 10),
                               decoration: BoxDecoration(
@@ -78,6 +95,79 @@ class _WriteRequestState extends State<WriteRequest> {
                               ),
                               child: Text('필수 입력',style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.bold),),
                             ),
+
+                            Visibility(
+                              visible: widget.requestType=='a' ? true : false,
+                              child: Column(
+                                children: <Widget>[
+                                  SizedBox(height: 15,),
+                                  MyFormTitle(title: '필요 인원',isDone:true,),
+                                  SizedBox(height:contentMargin,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      RawMaterialButton(
+                                        splashColor: kAppMainSplashColor,
+                                        onPressed: () {
+                                          setState(() {
+                                            if(_numberOfSa>1){
+                                              setState(() {
+                                                _numberOfSa--;
+                                              });
+                                            }
+                                          });
+                                        },
+                                        child:Icon(
+                                          Icons.remove,
+                                          color: Colors.white,
+                                          size: 20.0,
+                                        ),
+                                        shape:CircleBorder(),
+                                        elevation: 1.0,
+                                        fillColor: kAppMainColor,
+                                        padding:EdgeInsets.all(10.0),
+                                      ),
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                                        textBaseline: TextBaseline.alphabetic,
+                                        children: <Widget>[
+                                          Text(_numberOfSa.toString(),style:TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize:20
+                                          ),),
+                                          SizedBox(width:3,),
+                                          Text('명',style:TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize:20
+                                          ),)
+                                        ],
+                                      ),
+                                      RawMaterialButton(
+                                        splashColor: kAppMainSplashColor,
+                                        onPressed: () {
+                                          setState(() {
+                                            _numberOfSa++;
+                                          });
+                                        },
+                                        child:Icon(
+                                          Icons.add,
+                                          color: Colors.white,
+                                          size: 20.0,
+                                        ),
+                                        shape:CircleBorder(),
+                                        elevation: 1.0,
+                                        fillColor: kAppMainColor,
+                                        padding:EdgeInsets.all(10.0),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+
+
                             SizedBox(height: 15,),
                             //todo 근무 타입
                             MyFormTitle(title: '근무 타입',isDone:true,),
