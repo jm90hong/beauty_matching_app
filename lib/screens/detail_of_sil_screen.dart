@@ -2,6 +2,7 @@ import 'package:beautymatchingapp/constant/app_config.dart';
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/constant/k_widget.dart';
 import 'package:beautymatchingapp/main.dart';
+import 'package:beautymatchingapp/screens/detail_of_request_screen.dart';
 import 'package:beautymatchingapp/ui/card/request_form_sil_listtile.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,15 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 
 class DetailOfSilScreen extends StatefulWidget {
+  final String heroTag;
   final String shopName;
-  DetailOfSilScreen({this.shopName});
+  final bool isShowingRequest;
+
+  DetailOfSilScreen({
+    @required this.heroTag,
+    @required this.shopName,
+    @required this.isShowingRequest
+  });
   @override
   _DetailOfSilScreenState createState() => _DetailOfSilScreenState();
 }
@@ -194,20 +202,23 @@ class _DetailOfSilScreenState extends State<DetailOfSilScreen> with TickerProvid
                 child: Column(
                   children: <Widget>[
                     //todo 관리실 이미지 케러셀 (최대 5장)
-                    Container(
-                      child: CarouselSlider(
-                          options: CarouselOptions(
-                              enlargeCenterPage: false,
-                              height:250,
-                              viewportFraction: 1.0
-                          ),
-                          items: _imageList.map(
-                                  (image) =>
-                                  Container(
-                                      color: Colors.grey.shade200,
-                                      child: Image.network(image,fit: BoxFit.cover,width: MediaQuery.of(context).size.width,)
-                                  )
-                          ).toList()
+                    Hero(
+                      tag: widget.heroTag,
+                      child: Container(
+                        child: CarouselSlider(
+                            options: CarouselOptions(
+                                enlargeCenterPage: false,
+                                height:250,
+                                viewportFraction: 1.0
+                            ),
+                            items: _imageList.map(
+                                    (image) =>
+                                    Container(
+                                        color: Colors.grey.shade200,
+                                        child: Image.network(image,fit: BoxFit.cover,width: MediaQuery.of(context).size.width,)
+                                    )
+                            ).toList()
+                        ),
                       ),
                     ),
                     Container(
@@ -256,27 +267,29 @@ class _DetailOfSilScreenState extends State<DetailOfSilScreen> with TickerProvid
                             ],
                           ),
                           SizedBox(height: 30,),
-                          TabBar(
-                            labelPadding: EdgeInsets.only(bottom: 12),
-                            labelColor: kAppMainColor,
-                            unselectedLabelColor: Colors.grey,
-                            onTap: (index){
-                             setState(() {
-                               _tabIndex=index;
-                             });
-                            },
-                            controller: _tabController,
-                            tabs: <Widget>[
-                              Text('정보',style: TextStyle(fontWeight: FontWeight.bold),),
-                              Text('관리사 요청(2)',style: TextStyle(fontWeight: FontWeight.bold),),
-                            ],
+                          Visibility(
+                            visible: widget.isShowingRequest ? true : false,
+                            child: TabBar(
+                              labelPadding: EdgeInsets.only(bottom: 12),
+                              labelColor: kAppMainColor,
+                              unselectedLabelColor: Colors.grey,
+                              onTap: (index){
+                               setState(() {
+                                 _tabIndex=index;
+                               });
+                              },
+                              controller: _tabController,
+                              tabs: <Widget>[
+                                Text('정보',style: TextStyle(fontWeight: FontWeight.bold),),
+                                Text('관리사 요청(2)',style: TextStyle(fontWeight: FontWeight.bold),),
+                              ],
+                            ),
                           ),
                           SizedBox(height: 20,),
 
                           IndexedStack(
                             index: _tabIndex,
                             children: <Widget>[
-
                               Container(
                                 padding: EdgeInsets.only(left:5,right: 5),
                                 decoration: BoxDecoration(
@@ -307,18 +320,23 @@ class _DetailOfSilScreenState extends State<DetailOfSilScreen> with TickerProvid
                                       workType: 'day',
                                       workDate: '2020-08-18 화',
                                       shopName:'좋은 피부관리실',
-                                      shopImageUrl:'https://t1.daumcdn.net/cfile/blog/120482504ED6DC0626' ,
+                                      shopImageUrl:'https://t1.daumcdn.net/cfile/blog/120482504ED6DC0626',
                                       city: '부산',
                                       numberOfSa: 1,
                                       latitude: 34.1,
                                       longitude: 127.1,
                                       onTap: (){
                                         //todo 요청 상세 페이지로 이동...
-
-
-
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => DetailOfRequestScreen(
+                                            shopImageUrl: 'https://t1.daumcdn.net/cfile/blog/120482504ED6DC0626',
+                                            shopName: '좋은 피부관리실',
+                                          )),
+                                        );
                                       },
                                     ),
+
                                     RequestFromSilListTile(
                                       workType: 'term',
                                       workDate: '2020-08-18 화 ~ 2020-08-20 수',

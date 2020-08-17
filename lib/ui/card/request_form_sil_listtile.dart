@@ -64,6 +64,7 @@ class _RequestFromSilListTileState extends State<RequestFromSilListTile> {
           }
         },
         child: Container(
+          color: Colors.transparent,
           padding: EdgeInsets.only(left: 8,right: 8),
           width: MediaQuery.of(context).size.width,
           height:75,

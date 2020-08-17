@@ -236,6 +236,7 @@ class _DetailOfSaScreenState extends State<DetailOfSaScreen> {
 }
 
 
+
 Widget _buildCertificateImage({double size,String imageUrl}){
   return Container(
     width: size,

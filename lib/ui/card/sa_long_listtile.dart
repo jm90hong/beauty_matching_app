@@ -36,6 +36,7 @@ class _SaLongListTileState extends State<SaLongListTile> {
         }
       },
         child: Container(
+          color: Colors.transparent,
           width:double.infinity,
           height:75,
           child: Row(

@@ -157,6 +157,7 @@ class _MainPageHomeState extends State<MainPageHome> {
                     children: <Widget>[
                       //todo 관리실(sil) 리스트
                       SilCard(
+                        heroTag: 'sil_1',
                         shopImageUrl: 'https://t1.daumcdn.net/cfile/blog/99C5D6485A8A1BC31D',
                         shopName: '좋은 피부관리실',
                         location: '부산',
@@ -166,12 +167,15 @@ class _MainPageHomeState extends State<MainPageHome> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => DetailOfSilScreen(
+                              heroTag: 'sil_1',
                               shopName: '좋은 피부관리실',
+                              isShowingRequest: true,
                             )),
                           );
                         },
                       ),
                       SilCard(
+                        heroTag: 'sil_2',
                         shopImageUrl: 'https://post-phinf.pstatic.net/MjAxNzA5MTJfMjM3/MDAxNTA1MTgxOTcxOTIx.8EN-sj_AB0XCZeCRiKVINy6U9XsPCTk0J69Cx69nA-Mg.Gt2ISmMDBzIwWqfHhiiZP5qN9JbO0YmtNQ_0Fh8Rz3Yg.JPEG/%ED%94%BC%EB%B6%80%EA%B4%80%EB%A6%AC_%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4.jpg?type=w1200',
                         shopName: '테라피 마사지',
                         location: '경남 양산',
@@ -179,6 +183,7 @@ class _MainPageHomeState extends State<MainPageHome> {
                         numberOfSa: 1,
                       ),
                       SilCard(
+                        heroTag: 'sil_3',
                         shopImageUrl: 'https://www.seoulwire.com/news/photo/201905/126989_243387_1333.jpg',
                         shopName: '뷰티 스킨 케어',
                         location: '서울',

@@ -212,7 +212,7 @@ class _MyAppBarState extends State<MyAppBar> {
       title: Text(
         widget.title,
         style: TextStyle(
-            color: Colors.black,
+            color: Colors.black87,
             fontWeight: FontWeight.bold,
             fontSize:16
         ),
