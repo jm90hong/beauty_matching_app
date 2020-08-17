@@ -41,7 +41,7 @@ class _SaLongListTileState extends State<SaLongListTile> {
           child: Row(
             children: <Widget>[
               Container(
-                width:70,
+                width:75,
                 height:75,
                 decoration: BoxDecoration(
                     image: DecorationImage(

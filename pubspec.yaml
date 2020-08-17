@@ -49,6 +49,8 @@ dependencies:
   badges: ^1.1.1
   intl: ^0.16.1
 
+  webview_flutter: ^0.3.22+1
+
 
 
 dev_dependencies:

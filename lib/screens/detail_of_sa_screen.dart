@@ -220,7 +220,9 @@ class _DetailOfSaScreenState extends State<DetailOfSaScreen> {
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => WriteRequest()),
+                    MaterialPageRoute(builder: (context) => WriteRequest(
+                      saNickname: widget.nickname,
+                    )),
                   );
                 },
               ),

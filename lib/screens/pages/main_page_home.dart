@@ -158,7 +158,7 @@ class _MainPageHomeState extends State<MainPageHome> {
                       //todo 관리실(sil) 리스트
                       SilCard(
                         shopImageUrl: 'https://t1.daumcdn.net/cfile/blog/99C5D6485A8A1BC31D',
-                        shopName: '부산 좋은 피부관리실',
+                        shopName: '좋은 피부관리실',
                         location: '부산',
                         distance: '310km',
                         numberOfSa: 2,
@@ -166,7 +166,7 @@ class _MainPageHomeState extends State<MainPageHome> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => DetailOfSilScreen(
-                              shopName: '부산 좋은 피부관리실',
+                              shopName: '좋은 피부관리실',
                             )),
                           );
                         },

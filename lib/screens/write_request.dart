@@ -8,6 +8,10 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class WriteRequest extends StatefulWidget {
+
+  final String saNickname;
+  WriteRequest({@required this.saNickname});
+
   @override
   _WriteRequestState createState() => _WriteRequestState();
 }
@@ -61,7 +65,11 @@ class _WriteRequestState extends State<WriteRequest> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             //todo 필수 입력...
-
+                            Text(
+                              '${widget.saNickname} 님에게 요청',
+                              style: TextStyle(color: Colors.black87,fontWeight: FontWeight.bold,fontSize: 14),
+                            ),
+                            SizedBox(height: 20,),
                             Container(
                               padding: EdgeInsets.symmetric(vertical: 4,horizontal: 10),
                               decoration: BoxDecoration(
