@@ -1,6 +1,7 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/constant/k_widget.dart';
 import 'package:beautymatchingapp/constant/my_dialog.dart';
+import 'package:beautymatchingapp/screens/select_request_type_screen.dart';
 import 'package:beautymatchingapp/screens/write_request_screen.dart';
 import 'package:beautymatchingapp/ui/card/reply_card.dart';
 import 'package:flutter/material.dart';
@@ -218,10 +219,11 @@ class _DetailOfSaScreenState extends State<DetailOfSaScreen> {
               child: BottomButton(
                 btnText: '관리사 요청하기',
                 onTap: (){
+
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => WriteRequestScreen(
-                      saNickname: widget.nickname,
+                    MaterialPageRoute(builder: (context) =>SelectRequestTypeScreen(
+                      nickname: widget.nickname,
                       requestType: 'd',
                     )),
                   );

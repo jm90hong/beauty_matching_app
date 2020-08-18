@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 
-
 //TODO 마이페이지
 class MainPageMyPage extends StatefulWidget {
   @override

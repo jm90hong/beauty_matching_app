@@ -11,10 +11,12 @@ class WriteRequestScreen extends StatefulWidget {
 
   final String saNickname;
   final String requestType; //todo d, a
+  final String bedOrWork;
 
   WriteRequestScreen({
     @required this.saNickname,
-    @required this.requestType
+    @required this.requestType,
+    @required this.bedOrWork
   });
 
   @override
@@ -290,26 +292,35 @@ class _WriteRequestScreenState extends State<WriteRequestScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: titleMargin,),
-                            MyFormTitle(title: '베드 선택',
-                              isDone:_bedName=='empty' ? false : true,),
-                            SizedBox(height: contentMargin,),
-                            Container(
-                              width: double.infinity,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+
+                            Visibility(
+                              visible: widget.bedOrWork=='bed' ? true : false,
+                              child: Column(
                                 children: <Widget>[
-                                  BedDropDownWidget(
-                                    listOfBedName: ['베드 1','베드 2','베드 3','베드 4','베드 5','베드 6','베드 7',],
-                                    onChanged: (newValue){
-                                      setState(() {
-                                        _bedName=newValue;
-                                      });
-                                    },
+                                  SizedBox(height: titleMargin,),
+                                  MyFormTitle(title: '베드 선택',
+                                    isDone:_bedName=='empty' ? false : true,),
+                                  SizedBox(height: contentMargin,),
+                                  Container(
+                                    width: double.infinity,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        BedDropDownWidget(
+                                          listOfBedName: ['베드 1','베드 2','베드 3','베드 4','베드 5','베드 6','베드 7',],
+                                          onChanged: (newValue){
+                                            setState(() {
+                                              _bedName=newValue;
+                                            });
+                                          },
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
+
                             SizedBox(height: titleMargin,),
                             MyFormTitle(title: '연락처',isDone:false,),
                             SizedBox(height: contentMargin,),
