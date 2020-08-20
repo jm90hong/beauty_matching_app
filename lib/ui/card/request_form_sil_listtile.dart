@@ -15,6 +15,7 @@ class RequestFromSilListTile extends StatefulWidget {
   final double longitude;
   final double latitude;
   final Function onTap;
+  final String bedOrWork;
 
 
   RequestFromSilListTile({
@@ -26,6 +27,7 @@ class RequestFromSilListTile extends StatefulWidget {
     @required this.latitude,
     @required this.longitude,
     @required this.numberOfSa,
+    @required this.bedOrWork,
     this.onTap,
     this.workTime,
   });
@@ -73,12 +75,34 @@ class _RequestFromSilListTileState extends State<RequestFromSilListTile> {
               Container(
                 width: 75,
                 height: 75,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(widget.shopImageUrl)
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(8.0))
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      width: 75,
+                      height: 75,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(widget.shopImageUrl)
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))
+                      ),
+                    ),
+                    Container(
+                      width: 46,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                        color: Colors.black.withOpacity(0.7)
+                      ),
+                      child: Center(
+                        child: Text(
+                          widget.bedOrWork == 'bed' ? '베드' : '구인',
+                          style: TextStyle(color: Colors.white,fontSize: 11,fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
 

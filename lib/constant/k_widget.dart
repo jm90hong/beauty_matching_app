@@ -2,6 +2,7 @@ import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/diagnostics.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NumberOfSaTag extends StatelessWidget {
 
@@ -232,13 +233,13 @@ class OverlayingAppBar extends StatefulWidget {
   final Color backgroundColor;
   final Color widgetColor;
   final Color titleColor;
-  final Color starColor;
+  final Color likeColor;
 
   OverlayingAppBar({
     @required this.title,
     @required this.isLike,
     @required this.backgroundColor,
-    @required this.starColor,
+    @required this.likeColor,
     @required this.widgetColor,
     @required this.titleColor
   });
@@ -277,7 +278,7 @@ class _OverlayingAppBarState extends State<OverlayingAppBar> {
           ),
 
           IconButton(
-            icon: Icon(Icons.star_border,color: widget.starColor,size: 30,),
+            icon: Icon(FontAwesomeIcons.heart,color: widget.likeColor,size: 24,),
             onPressed: (){
 
             },

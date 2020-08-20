@@ -7,6 +7,7 @@ import 'package:beautymatchingapp/ui/card/request_form_sil_listtile.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 
@@ -258,7 +259,7 @@ class _DetailOfSilScreenState extends State<DetailOfSilScreen> with TickerProvid
                               SizedBox(width:18,),
                               Row(
                                 children: <Widget>[
-                                  Icon(Icons.star,size: 18,color: kAppMainColor,),
+                                  Icon(FontAwesomeIcons.solidHeart,size: 18,color: kAppMainColor,),
                                   SizedBox(width:8,),
                                   Text('찜 54',style: TextStyle(color: Color(0xff444444),fontSize:16,fontWeight: FontWeight.w600),),
                                 ],
@@ -325,11 +326,13 @@ class _DetailOfSilScreenState extends State<DetailOfSilScreen> with TickerProvid
                                       numberOfSa: 1,
                                       latitude: 34.1,
                                       longitude: 127.1,
+                                      bedOrWork: 'bed',
                                       onTap: (){
                                         //todo 요청 상세 페이지로 이동...
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(builder: (context) => DetailOfRequestScreen(
+                                            bedOrWork: 'bed',
                                             shopImageUrl: 'https://t1.daumcdn.net/cfile/blog/120482504ED6DC0626',
                                             shopName: '좋은 피부관리실',
                                           )),
@@ -346,6 +349,18 @@ class _DetailOfSilScreenState extends State<DetailOfSilScreen> with TickerProvid
                                       numberOfSa: 1,
                                       latitude: 34.1,
                                       longitude: 127.1,
+                                      bedOrWork: 'work',
+                                      onTap: (){
+                                        //todo 요청 상세 페이지로 이동...
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => DetailOfRequestScreen(
+                                            bedOrWork: 'work',
+                                            shopImageUrl: 'https://t1.daumcdn.net/cfile/blog/120482504ED6DC0626',
+                                            shopName: '좋은 피부관리실',
+                                          )),
+                                        );
+                                      },
                                     ),
                                   ],
                                 ),
@@ -367,10 +382,11 @@ class _DetailOfSilScreenState extends State<DetailOfSilScreen> with TickerProvid
               builder: (context,child)=>OverlayingAppBar(
                 backgroundColor:backgroundColorAnimation.value,
                 widgetColor: widgetColorAnimation.value,
-                starColor: starColorAnimation.value,
+                likeColor: starColorAnimation.value,
                 titleColor: titleColorAnimation.value,
                 title: widget.shopName,
-                isLike: false,)
+                isLike: false,
+              )
             )
           ],
         ),

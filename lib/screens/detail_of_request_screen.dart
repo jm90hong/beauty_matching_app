@@ -8,10 +8,13 @@ import 'detail_of_sil_screen.dart';
 class DetailOfRequestScreen extends StatefulWidget {
   final String shopName;
   final String shopImageUrl;
+  final String bedOrWork;
+
 
   DetailOfRequestScreen({
     @required this.shopName,
-    @required this.shopImageUrl
+    @required this.shopImageUrl,
+    @required this.bedOrWork
   });
 
   @override
@@ -144,6 +147,10 @@ class _DetailOfRequestScreenState extends State<DetailOfRequestScreen> {
                    _buildInfoBox(
                        title: '주소',
                        content: '부산광역시 북구 부산 연제구 부산시청 1001 1층'
+                   ),
+                   _buildInfoBox(
+                       title: '요청 타입',
+                       content: widget.bedOrWork=='bed' ? '베드 할당' : '구인'
                    ),
                    _buildInfoBox(
                        title: '모집인원',

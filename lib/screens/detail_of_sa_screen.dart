@@ -5,6 +5,7 @@ import 'package:beautymatchingapp/screens/select_request_type_screen.dart';
 import 'package:beautymatchingapp/screens/write_request_screen.dart';
 import 'package:beautymatchingapp/ui/card/reply_card.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 class DetailOfSaScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class _DetailOfSaScreenState extends State<DetailOfSaScreen> {
           title:widget.nickname,
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.star_border,size:30,color:kAppMainColor,),
+              icon: Icon(FontAwesomeIcons.heart,size:24,color:kAppMainColor,),
               onPressed: (){
 
               },
