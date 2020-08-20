@@ -2,6 +2,7 @@ import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/constant/k_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'detail_of_sil_screen.dart';
 
@@ -109,7 +110,7 @@ class _DetailOfRequestScreenState extends State<DetailOfRequestScreen> {
                                SizedBox(width:10,),
                                Row(
                                  children: <Widget>[
-                                   Icon(Icons.star,size: 16,color: kAppMainColor,),
+                                   Icon(FontAwesomeIcons.solidHeart,size: 16,color: kAppMainColor,),
                                    SizedBox(width:8,),
                                    Text('찜 54',style: TextStyle(color: Color(0xff444444),fontSize:14,fontWeight: FontWeight.w600),),
                                  ],
