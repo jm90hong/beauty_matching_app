@@ -77,7 +77,7 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(FontAwesomeIcons.heart,size:bottomNavIconSize),
             title: Padding(
                 padding: EdgeInsets.only(top:4),
-                child: Text('my찜',style: bottomNavTextStyle)),
+                child: Text('MY찜',style: bottomNavTextStyle)),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.user,size:bottomNavIconSize),
