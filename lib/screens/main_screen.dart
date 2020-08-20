@@ -74,7 +74,7 @@ class _MainScreenState extends State<MainScreen> {
                 child: Text('요청/승인',style: bottomNavTextStyle)),
           ),
           BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.star,size:bottomNavIconSize),
+            icon: Icon(FontAwesomeIcons.heart,size:bottomNavIconSize),
             title: Padding(
                 padding: EdgeInsets.only(top:4),
                 child: Text('my찜',style: bottomNavTextStyle)),
