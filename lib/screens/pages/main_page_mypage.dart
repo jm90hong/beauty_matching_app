@@ -1,5 +1,6 @@
 import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/constant/k_widget.dart';
+import 'package:beautymatchingapp/screens/select_sa_or_sil_screen.dart';
 import 'package:beautymatchingapp/vo/session.dart';
 import 'package:flutter/material.dart';
 
@@ -76,14 +77,24 @@ class _MainPageMyPageState extends State<MainPageMyPage> {
                             ],
                           ),
                           SizedBox(height: 8,),
-                          Text(Session.type != 'sa' && Session.type != 'sil' ?
-                          '관리사 / 관리실 등록하기' :
-                          Session.type=='sa' ? '관리사' :
-                          Session.type=='sil' ? '관리실' : '관리사/관리실 등록하기' ,
-                            style: TextStyle(
-                                color: kAppMainColor,
-                                fontSize:Session.type==null ? 13 : 15,
-                                fontWeight: FontWeight.bold
+                          GestureDetector(
+                            onTap: (){
+                              if(Session.type != 'sa' && Session.type != 'sil'){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => SelectSaOrSilScreen()),
+                                );
+                              }
+                            },
+                            child: Text(Session.type != 'sa' && Session.type != 'sil' ?
+                            '관리사 / 관리실 등록하기' :
+                            Session.type=='sa' ? '관리사' :
+                            Session.type=='sil' ? '관리실' : '관리사/관리실 등록하기' ,
+                              style: TextStyle(
+                                  color: kAppMainColor,
+                                  fontSize:Session.type==null ? 14 : 15,
+                                  fontWeight: FontWeight.bold
+                              ),
                             ),
                           ),
                         ],

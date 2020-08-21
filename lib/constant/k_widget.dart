@@ -427,3 +427,63 @@ class MyBehavior extends ScrollBehavior {
     return child;
   }
 }
+
+
+
+class SelectingTypeBox extends StatelessWidget {
+  final String text;
+  final String subText;
+  final bool isSelected;
+  final Function onTap;
+
+
+  SelectingTypeBox({
+    @required this.isSelected,
+    @required this.text,
+    this.subText,
+    this.onTap
+  });
+
+
+  Widget _buildCircleBox({bool isSelected}){
+    return Container(
+      width: 15,
+      height: 15,
+      decoration: BoxDecoration(
+          color: isSelected ? kAppMainColor : Colors.grey.shade300,
+          shape: BoxShape.circle
+      ),
+    );
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: (){
+          if(onTap!=null){
+            onTap();
+          }
+        },
+        child: Container(
+          color: Colors.transparent,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _buildCircleBox(isSelected:isSelected),
+              SizedBox(width: 20,),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(text,style: TextStyle(color: Colors.black,fontSize: 22,fontWeight:FontWeight.bold),),
+                  SizedBox(height: 8,),
+                  Text(subText,style: TextStyle(color: Colors.grey,fontSize: 14,fontWeight: FontWeight.bold),),
+                ],
+              )
+            ],
+          ),
+        )
+    );
+  }
+}

@@ -1,7 +1,5 @@
-import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:beautymatchingapp/constant/k_widget.dart';
 import 'package:beautymatchingapp/screens/write_request_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SelectRequestTypeScreen extends StatefulWidget {
@@ -16,6 +14,7 @@ class SelectRequestTypeScreen extends StatefulWidget {
   @override
   _SelectRequestTypeScreenState createState() => _SelectRequestTypeScreenState();
 }
+
 
 class _SelectRequestTypeScreenState extends State<SelectRequestTypeScreen> {
   String _selectedType='bed';
@@ -35,7 +34,7 @@ class _SelectRequestTypeScreenState extends State<SelectRequestTypeScreen> {
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SelectingTypeBox(
                     isSelected: _selectedType=='bed'  ? true : false,
@@ -91,59 +90,3 @@ class _SelectRequestTypeScreenState extends State<SelectRequestTypeScreen> {
 }
 
 
-class SelectingTypeBox extends StatelessWidget {
-  final String text;
-  final String subText;
-  final bool isSelected;
-  final Function onTap;
-
-
-  SelectingTypeBox({
-    @required this.isSelected,
-    @required this.text,
-    this.subText,
-    this.onTap
-  });
-
-
-  Widget _buildCircleBox({bool isSelected}){
-    return Container(
-      width: 15,
-      height: 15,
-      decoration: BoxDecoration(
-        color: isSelected ? kAppMainColor : Colors.grey.shade300,
-        shape: BoxShape.circle
-      ),
-    );
-  }
-
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: (){
-        if(onTap!=null){
-          onTap();
-        }
-      },
-      child: Container(
-        color: Colors.transparent,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _buildCircleBox(isSelected:isSelected),
-            SizedBox(width: 20,),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(text,style: TextStyle(color: Colors.black,fontSize: 22,fontWeight:FontWeight.bold),),
-                SizedBox(height: 8,),
-                Text(subText,style: TextStyle(color: Colors.grey,fontSize: 14,fontWeight: FontWeight.bold),),
-              ],
-            )
-          ],
-        ),
-      )
-    );
-  }
-}
