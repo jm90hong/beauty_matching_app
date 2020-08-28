@@ -16,6 +16,7 @@ const Color kAppMainColor= MaterialColor(_colorCode,const<int,Color>{
 });
 
 
+
 const Color kAppMainSplashColor= MaterialColor(_splashColorCode,const<int,Color>{
   50: Color(_colorCode),
   100: Color(_colorCode),
