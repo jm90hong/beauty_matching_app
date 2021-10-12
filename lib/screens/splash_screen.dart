@@ -25,6 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> checkAppLoginInfo() async{
     prefs = await _prefs;
     String loginProvider = prefs.getString('loginProvider');
+    Navigator.pushReplacementNamed(context, MainScreen.id);
     if(loginProvider==null){
       //todo 앱 로그인 안됨.
       setState(() {

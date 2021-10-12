@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 
 class SilCard extends StatefulWidget {
+  final String heroTag;
   final shopImageUrl;
   final shopName;
   final location;
@@ -11,7 +12,7 @@ class SilCard extends StatefulWidget {
   final numberOfSa;
   final Function onTap;
 
-  SilCard({this.shopImageUrl,this.distance,this.location,
+  SilCard({this.heroTag,this.shopImageUrl,this.distance,this.location,
           this.shopName,this.numberOfSa,this.onTap});
   @override
   _SilCardState createState() => _SilCardState();
@@ -36,15 +37,18 @@ class _SilCardState extends State<SilCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  width:130,
-                  height:130,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(widget.shopImageUrl)
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(15.0))
+                Hero(
+                  tag: widget.heroTag,
+                  child: Container(
+                    width:130,
+                    height:130,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(widget.shopImageUrl)
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(15.0))
+                    ),
                   ),
                 ),
               ],

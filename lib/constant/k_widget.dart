@@ -2,6 +2,7 @@ import 'package:beautymatchingapp/constant/k_color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/diagnostics.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NumberOfSaTag extends StatelessWidget {
 
@@ -126,7 +127,7 @@ class FormSection extends StatelessWidget {
     return Material(
       elevation: 1,
       child: Container(
-        padding: EdgeInsets.only(top: 10,left:8,right:8,bottom:20),
+        padding: EdgeInsets.only(top: 15,left:8,right:8,bottom:30),
         color: Colors.white,
         width: double.infinity,
         child: child,
@@ -209,13 +210,88 @@ class _MyAppBarState extends State<MyAppBar> {
       iconTheme: IconThemeData(
         color: Colors.black
       ),
-      title: Text(widget.title,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize:17),),
+      title: Text(
+        widget.title,
+        style: TextStyle(
+            color: Colors.black87,
+            fontWeight: FontWeight.bold,
+            fontSize:16
+        ),
+      ),
       elevation: 0,
       backgroundColor: Colors.white,
       actions: widget.actions,
     );
   }
 }
+
+
+
+class OverlayingAppBar extends StatefulWidget {
+  final String title;
+  final bool isLike;
+  final Color backgroundColor;
+  final Color widgetColor;
+  final Color titleColor;
+  final Color likeColor;
+
+  OverlayingAppBar({
+    @required this.title,
+    @required this.isLike,
+    @required this.backgroundColor,
+    @required this.likeColor,
+    @required this.widgetColor,
+    @required this.titleColor
+  });
+
+  @override
+  _OverlayingAppBarState createState() => _OverlayingAppBarState();
+}
+
+class _OverlayingAppBarState extends State<OverlayingAppBar> {
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 50,
+      color:widget.backgroundColor,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: widget.widgetColor,
+                ),
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+              ),
+              SizedBox(width:20,),
+              Text(widget.title,style: TextStyle(color:widget.titleColor,fontWeight: FontWeight.bold,fontSize: 16),)
+            ],
+          ),
+
+          IconButton(
+            icon: Icon(FontAwesomeIcons.heart,color: widget.likeColor,size: 24,),
+            onPressed: (){
+
+            },
+          )
+
+
+
+        ],
+      ),
+    );
+  }
+}
+
 
 
 
@@ -298,5 +374,116 @@ class _BottomButtonState extends State<BottomButton> {
   }
 }
 
+class MyTextArea extends StatefulWidget {
+  final Function onChanged;
+  final TextEditingController textEditingController;
+  final String hintText;
+  MyTextArea({
+    this.textEditingController,
+    this.onChanged,
+    this.hintText
+  });
 
 
+  @override
+  _MyTextAreaState createState() => _MyTextAreaState();
+}
+
+class _MyTextAreaState extends State<MyTextArea> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      child: TextFormField(
+        style: TextStyle(color: Colors.black,fontSize:13),
+        cursorColor: Colors.black,
+        controller: widget.textEditingController,
+        minLines:3,
+        maxLines: null,
+        readOnly: false,
+        onChanged: (value){
+          widget.onChanged(value);
+        },
+        keyboardType: TextInputType.multiline,
+        textAlignVertical: TextAlignVertical.top,
+        decoration: InputDecoration(
+          hintText: widget.hintText,
+          border: OutlineInputBorder(),
+          contentPadding: EdgeInsets.all(8.0),
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey.shade300,)
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class MyBehavior extends ScrollBehavior {
+  @override
+  Widget buildViewportChrome(
+      BuildContext context, Widget child, AxisDirection axisDirection) {
+    return child;
+  }
+}
+
+
+
+class SelectingTypeBox extends StatelessWidget {
+  final String text;
+  final String subText;
+  final bool isSelected;
+  final Function onTap;
+
+
+  SelectingTypeBox({
+    @required this.isSelected,
+    @required this.text,
+    this.subText,
+    this.onTap
+  });
+
+
+  Widget _buildCircleBox({bool isSelected}){
+    return Container(
+      width: 15,
+      height: 15,
+      decoration: BoxDecoration(
+          color: isSelected ? kAppMainColor : Colors.grey.shade300,
+          shape: BoxShape.circle
+      ),
+    );
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: (){
+          if(onTap!=null){
+            onTap();
+          }
+        },
+        child: Container(
+          color: Colors.transparent,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _buildCircleBox(isSelected:isSelected),
+              SizedBox(width: 20,),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(text,style: TextStyle(color: Colors.black,fontSize: 22,fontWeight:FontWeight.bold),),
+                  SizedBox(height: 8,),
+                  Text(subText,style: TextStyle(color: Colors.grey,fontSize: 14,fontWeight: FontWeight.bold),),
+                ],
+              )
+            ],
+          ),
+        )
+    );
+  }
+}
